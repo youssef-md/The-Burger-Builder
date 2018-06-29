@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import './App.css';
+import Person from './Person/Person' //firs letter must be capital so React identifies as custom component
 
 class App extends Component {
   render() {
-    /* return (
+    return (
       <div className="App">
         <h1>Hello</h1>
+        <Person /> 
       </div>
-    ); */
+    );
 
-    return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Understanding JSX!'))
   }
 }
 
