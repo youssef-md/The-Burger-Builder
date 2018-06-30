@@ -5,6 +5,7 @@ const Person = (props) => {
     <div>
       <p>I'm { props.name } and I'm { props.age } years old</p>
       <p>{ props.children }</p>
+      <button onClick = { props.click }>switch names from presentational component</button>
     </div>
   )
 }
