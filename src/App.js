@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person' //firs letter must be capital so React identifies as custom component
-import { RSA_NO_PADDING } from 'constants';
 
 class App extends Component {
 
