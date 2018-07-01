@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person' //firs letter must be capital so React identifies as custom component
+import { RSA_NO_PADDING } from 'constants';
 
 class App extends Component {
 
@@ -38,11 +39,25 @@ class App extends Component {
             My hobbies: Programming
         </Person>
         
-        <button onClick = { () => this.switchNameHandler('Yousssef') }>Switch name</button>
+        <button  
+          style = {style} 
+          onClick = { () => this.switchNameHandler('Yousssef') }>
+            Switch name
+        </button>
       </div>
     );
 
   }
 }
+
+
+const style = {
+  backgroundColor: 'white',
+  border: '2px solid black',
+  padding: '18px',
+  borderRadius: '20px',
+  cursor: 'pointer'
+}
+
 
 export default App;
