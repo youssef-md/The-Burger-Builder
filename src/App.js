@@ -6,14 +6,16 @@ class App extends Component {
 
   state = {
     persons: [
-      { name: 'Youssef', age: 18 }
+      { name: 'Youssef', age: 18 },
+      { name: 'Alice', age: 19 }
     ]
   }
 
-  switchNameHandler = (newName) => {
+  switchNameHandler = (newName1, newName2 ) => {
     this.setState({
       persons: [
-        { name: newName, age: 18 },
+        { name: newName1, age: 18 },
+        { name: newName2, age: 19}
       ]
     })
   }
@@ -21,7 +23,8 @@ class App extends Component {
   nameChangedHandler = (event) => {
     this.setState({
       persons: [
-        { name: event.target.value, age: 18 }
+        { name: event.target.value, age: 18 },
+        { name: event.target.value, age: 19}
       ]
     })
   }
@@ -33,14 +36,20 @@ class App extends Component {
         <Person 
           name = { this.state.persons[0].name } 
           age = { this.state.persons[0].age } 
-          click = { this.switchNameHandler.bind(this, 'YouYou', 'AliAli', 'ZéZé') }
+          click = { this.switchNameHandler.bind(this, 'YouYou', 'AliAli') }
           changed = {this.nameChangedHandler} >
             My hobbies: Programming
         </Person>
         
+        <Person 
+          name = { this.state.persons[1].name }
+          age = { this.state.persons[1].age } 
+          click = { this.switchNameHandler.bind(this, 'Youssefinho', 'Alicinha') }
+          changed = { this.nameChangedHandler }/>
+
         <button  
           style = {style} 
-          onClick = { () => this.switchNameHandler('Yousssef') }>
+          onClick = { () => this.switchNameHandler('Youssef', 'Alice') }>
             Switch name
         </button>
       </div>
