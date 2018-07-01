@@ -37,39 +37,28 @@ class App extends Component {
     this.setState({showPersons: !doesShow})
   }
 
+  
   render() {
 
     let persons = null
     if(this.state.showPersons) {
       persons = (
         <div>
-          <Person 
-            name = { this.state.persons[1].name }
-            age = { this.state.persons[1].age } 
-            click = { this.switchNameHandler.bind(this, 'Youssefinho', 'Alicinha', 'Solzinha') }
-            changed = { this.nameChangedHandler }/>
-
-          <Person 
-            name = { this.state.persons[2].name }
-            age = { this.state.persons[2].age } 
-            click = { this.switchNameHandler.bind(this, 'Youssefinhonho', 'Alicinhanha', 'Solzinhanha') }
-            changed = { this.nameChangedHandler }/>
-        </div> 
+          {
+            this.state.persons.map(person => {
+              return <Person name = { person.name } age = { person.age }/>
+            })
+          }
+        </div>
       )
     }
 
     return (
       <div className="App">
         <h1>Hello</h1>
-        <Person 
-          name = { this.state.persons[0].name } 
-          age = { this.state.persons[0].age } 
-          click = { this.switchNameHandler.bind(this, 'YouYou', 'AliAli', 'SolSol') }
-          changed = {this.nameChangedHandler} >
-            My hobbies: Programming
-        </Person>
+        
         { persons }
-    
+        
         <button  
           style = {style} 
           onClick = { this.togglePersonHandler }>
