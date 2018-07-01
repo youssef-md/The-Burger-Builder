@@ -38,6 +38,26 @@ class App extends Component {
   }
 
   render() {
+
+    let persons = null
+    if(this.state.showPersons) {
+      persons = (
+        <div>
+          <Person 
+            name = { this.state.persons[1].name }
+            age = { this.state.persons[1].age } 
+            click = { this.switchNameHandler.bind(this, 'Youssefinho', 'Alicinha', 'Solzinha') }
+            changed = { this.nameChangedHandler }/>
+
+          <Person 
+            name = { this.state.persons[2].name }
+            age = { this.state.persons[2].age } 
+            click = { this.switchNameHandler.bind(this, 'Youssefinhonho', 'Alicinhanha', 'Solzinhanha') }
+            changed = { this.nameChangedHandler }/>
+        </div> 
+      )
+    }
+
     return (
       <div className="App">
         <h1>Hello</h1>
@@ -48,23 +68,8 @@ class App extends Component {
           changed = {this.nameChangedHandler} >
             My hobbies: Programming
         </Person>
-        {
-          this.state.showPersons ? //condicional
-            <div>
-              <Person 
-                name = { this.state.persons[1].name }
-                age = { this.state.persons[1].age } 
-                click = { this.switchNameHandler.bind(this, 'Youssefinho', 'Alicinha', 'Solzinha') }
-                changed = { this.nameChangedHandler }/>
-
-              <Person 
-                name = { this.state.persons[2].name }
-                age = { this.state.persons[2].age } 
-                click = { this.switchNameHandler.bind(this, 'Youssefinhonho', 'Alicinhanha', 'Solzinhanha') }
-                changed = { this.nameChangedHandler }/>
-
-            </div> : null //else
-        }
+        { persons }
+    
         <button  
           style = {style} 
           onClick = { this.togglePersonHandler }>
