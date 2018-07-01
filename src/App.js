@@ -7,16 +7,19 @@ class App extends Component {
   state = {
     persons: [
       { name: 'Youssef', age: 18 },
-      { name: 'Alice', age: 19 }
+      { name: 'Alice', age: 19 },
+      { name: 'Sol', age: 2 } 
     ]
   }
 
-  switchNameHandler = (newName1, newName2 ) => {
+  switchNameHandler = (newName1, newName2, newName3 ) => {
     this.setState({
       persons: [
         { name: newName1, age: 18 },
-        { name: newName2, age: 19}
-      ]
+        { name: newName2, age: 19},
+        { name: newName3, age: 2}
+      ],
+      showPersons: false
     })
   }
 
@@ -29,6 +32,11 @@ class App extends Component {
     })
   }
 
+  togglePersonHandler = () => {
+    const doesShow = this.state.showPersons
+    this.setState({showPersons: !doesShow})
+  }
+
   render() {
     return (
       <div className="App">
@@ -36,21 +44,31 @@ class App extends Component {
         <Person 
           name = { this.state.persons[0].name } 
           age = { this.state.persons[0].age } 
-          click = { this.switchNameHandler.bind(this, 'YouYou', 'AliAli') }
+          click = { this.switchNameHandler.bind(this, 'YouYou', 'AliAli', 'SolSol') }
           changed = {this.nameChangedHandler} >
             My hobbies: Programming
         </Person>
-        
-        <Person 
-          name = { this.state.persons[1].name }
-          age = { this.state.persons[1].age } 
-          click = { this.switchNameHandler.bind(this, 'Youssefinho', 'Alicinha') }
-          changed = { this.nameChangedHandler }/>
+        {
+          this.state.showPersons ? //condicional
+            <div>
+              <Person 
+                name = { this.state.persons[1].name }
+                age = { this.state.persons[1].age } 
+                click = { this.switchNameHandler.bind(this, 'Youssefinho', 'Alicinha', 'Solzinha') }
+                changed = { this.nameChangedHandler }/>
 
+              <Person 
+                name = { this.state.persons[2].name }
+                age = { this.state.persons[2].age } 
+                click = { this.switchNameHandler.bind(this, 'Youssefinhonho', 'Alicinhanha', 'Solzinhanha') }
+                changed = { this.nameChangedHandler }/>
+
+            </div> : null //else
+        }
         <button  
           style = {style} 
-          onClick = { () => this.switchNameHandler('Youssef', 'Alice') }>
-            Switch name
+          onClick = { this.togglePersonHandler }>
+            Toggle Persons
         </button>
       </div>
     );
