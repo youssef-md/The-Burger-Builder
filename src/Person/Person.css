@@ -9,3 +9,10 @@
   padding: 15px;
   text-align: center;
 }
+
+.delete-btn {
+  background-color: gray;
+  padding: 5px;
+  border-radius: 10px;
+  color: white;
+}
