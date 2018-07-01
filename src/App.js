@@ -28,7 +28,8 @@ class App extends Component {
 
   deletePersonHandler = (personIndex) => {
 
-    const newPersonsArray = this.state.persons
+    //const newPersonsArray = this.state.persons.slice()
+    const newPersonsArray = [...this.state.persons] //creating a copy of the array, for not getting the pointer
     newPersonsArray.splice(personIndex, 1)
     
     this.setState({persons: newPersonsArray})
