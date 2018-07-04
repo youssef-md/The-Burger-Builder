@@ -6,9 +6,9 @@ class App extends Component {
 
   state = {
     persons: [
-      { name: 'Youssef', age: 18 },
-      { name: 'Alice', age: 19 },
-      { name: 'Sol', age: 2 } 
+      { id: 'asd1', name: 'Youssef', age: 18 },
+      { id: 'asd2', name: 'Alice', age: 19 },
+      { id: 'asd3', name: 'Sol', age: 2 } 
     ]
   }
 
@@ -28,8 +28,9 @@ class App extends Component {
 
   deletePersonHandler = (personIndex) => {
 
+    //const newPersonsArray = this.state.persons -- get the pointer to the original state BAD PRACTICE !
     //const newPersonsArray = this.state.persons.slice()
-    const newPersonsArray = [...this.state.persons] //creating a copy of the array, for not getting the pointer
+    const newPersonsArray = [...this.state.persons] //creating a copy of the array, for avoiding a pointer
     newPersonsArray.splice(personIndex, 1)
     
     this.setState({persons: newPersonsArray})
@@ -44,9 +45,10 @@ class App extends Component {
           {
             this.state.persons.map((person, index) => {
               return <Person 
+                key = { person.id }
                 name = { person.name } 
                 age = { person.age } 
-                click = {() => this.deletePersonHandler(index)}/>
+                click = { () => this.deletePersonHandler(index) }/>
             })
           }
         </div>
