@@ -33,20 +33,16 @@ class App extends Component {
   }
 
   deletePersonHandler = (personIndex) => {
-
     //const newPersonsArray = this.state.persons -- get the pointer to the original state BAD PRACTICE !
-    //const newPersonsArray = this.state.persons.slice()
-    const newPersonsArray = [...this.state.persons] //creating a copy of the array, for avoiding a pointer
+    const newPersonsArray = [...this.state.persons] 
     newPersonsArray.splice(personIndex, 1)
-    
+
     this.setState({persons: newPersonsArray})
   }
 
-  render() {
-
-    let persons = null
+  personsList = () => {
     if(this.state.showPersons) {
-      persons = (
+      return (
         <div>
           {
             this.state.persons.map((person, index) => {
@@ -61,13 +57,16 @@ class App extends Component {
         </div>
       )
     }
+  }
+
+  render() {
 
     return (
       <div className="App">
-        <h1>Hello</h1>
-        
-        { persons }
+        <h1>Hello</h1>        
 
+        { this.personsList() }
+        
         <button  
           style = {style} 
           onClick = { this.togglePersonHandler }>
@@ -78,6 +77,8 @@ class App extends Component {
 
   }
 }
+
+
 
 
 const style = {
