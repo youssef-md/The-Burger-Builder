@@ -40,9 +40,23 @@ class App extends Component {
     this.setState({persons: newPersonsArray})
   }
 
-  personsList = () => {
+
+
+  render() {
+
+    const style = {
+      fontSize: '26px',
+      backgroundColor: 'green',
+      color: 'white',
+      border: '2px solid black',
+      padding: '18px',
+      borderRadius: '20px',
+      cursor: 'pointer'
+    }
+
+    let persons = ''
     if(this.state.showPersons) {
-      return (
+      persons = (
         <div>
           {
             this.state.persons.map((person, index) => {
@@ -52,26 +66,30 @@ class App extends Component {
                 age = { person.age } 
                 click = { () => this.deletePersonHandler(index) } 
                 changed = { (event) => this.nameChangedHandler(event, person.id, index)  }/>
-            })
-          }
+            })} 
         </div>
-      )
+      ) 
+      style.backgroundColor = 'red'
     }
-  }
 
-  render() {
+    const classes = []
+    if(this.state.persons.length <= 2) 
+      classes.push('red')
+
+    if(this.state.persons.length <= 1)
+      classes.push('bold')
 
     return (
       <div className="App">
         <h1>Hello</h1>        
-
-        { this.personsList() }
-        
+        <p className = { classes.join(' ') }>This is really working</p>
         <button  
-          style = {style} 
+          style = { style } 
           onClick = { this.togglePersonHandler }>
             Toggle Persons
         </button>
+
+        { persons } 
       </div>
     );
 
@@ -79,15 +97,6 @@ class App extends Component {
 }
 
 
-
-
-const style = {
-  backgroundColor: 'white',
-  border: '2px solid black',
-  padding: '18px',
-  borderRadius: '20px',
-  cursor: 'pointer'
-}
 
 
 export default App;
