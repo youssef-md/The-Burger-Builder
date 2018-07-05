@@ -61,7 +61,7 @@ class App extends Component {
             })} 
         </div>
       )
-      btnClass = styles.red
+      btnClass = styles.Red
     }
 
     const classes = []
