@@ -6,7 +6,7 @@ const Cockpit = (props) => {
   const classes = []
   let btnClass = ''
 
-  if(props.showPersons)
+  if(props.showPersons && props.persons.length !== 0)
     btnClass = styles.Red
 
   if(props.persons.length <= 2) 

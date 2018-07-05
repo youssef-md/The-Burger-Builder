@@ -24,6 +24,8 @@ class App extends Component {
   }
 
   togglePersonHandler = () => {
+    if(this.state.persons.length === 0)
+      alert('No persons left')
     const doesShow = this.state.showPersons
     this.setState({ showPersons: !doesShow })
   }
