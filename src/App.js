@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
-import Person from './Person/Person' //firs letter must be capital so React identifies as custom component
-
+import styles from './App.css';
+import Person from './Person/Person' 
 class App extends Component {
 
   state = {
@@ -13,48 +12,34 @@ class App extends Component {
   }
 
   nameChangedHandler = (event, id, personIndex) => {
-
-    const person = {
-      ...this.state.persons[personIndex]
-    }
-    person.name = event.target.value //getting the new typed name
+    const person = { ...this.state.persons[personIndex] }
+    person.name = event.target.value 
 
     const persons = [...this.state.persons]
     persons[personIndex] = person
 
-    this.setState({
-      persons: persons
-    })
+    this.setState({ persons: persons })
   }
 
   togglePersonHandler = () => {
     const doesShow = this.state.showPersons
-    this.setState({showPersons: !doesShow})
+    this.setState({ showPersons: !doesShow })
   }
 
   deletePersonHandler = (personIndex) => {
     //const newPersonsArray = this.state.persons -- get the pointer to the original state BAD PRACTICE !
     const newPersonsArray = [...this.state.persons] 
     newPersonsArray.splice(personIndex, 1)
-
-    this.setState({persons: newPersonsArray})
+    this.setState({ persons: newPersonsArray })
   }
 
 
 
   render() {
 
-    const style = {
-      fontSize: '26px',
-      backgroundColor: 'green',
-      color: 'white',
-      border: '2px solid black',
-      padding: '18px',
-      borderRadius: '20px',
-      cursor: 'pointer'
-    }
+    let persons = null
+    let btnClass = ''
 
-    let persons = ''
     if(this.state.showPersons) {
       persons = (
         <div>
@@ -68,23 +53,23 @@ class App extends Component {
                 changed = { (event) => this.nameChangedHandler(event, person.id, index)  }/>
             })} 
         </div>
-      ) 
-      style.backgroundColor = 'red'
+      )
+      btnClass = styles.Red
     }
 
     const classes = []
     if(this.state.persons.length <= 2) 
-      classes.push('red')
+      classes.push(styles.red)
 
     if(this.state.persons.length <= 1)
-      classes.push('bold')
+      classes.push(styles.bold)
 
     return (
-      <div className="App">
+      <div className={styles.App}>
         <h1>Hello</h1>        
         <p className = { classes.join(' ') }>This is really working</p>
         <button  
-          style = { style } 
+          className = { btnClass }
           onClick = { this.togglePersonHandler }>
             Toggle Persons
         </button>

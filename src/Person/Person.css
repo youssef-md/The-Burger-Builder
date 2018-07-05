@@ -1,6 +1,4 @@
 
-/* GLOBAL CSS */
-
 .Person {
   width: 60%;
   margin: 26px auto;
@@ -10,17 +8,15 @@
   text-align: center;
 }
 
-.delete-btn {
+.deleteBtn {
   background-color: gray;
   padding: 5px;
   border-radius: 10px;
   color: white;
 }
 
-.red {
-  color: red;
-}
-
-.bold {
-  font-weight: bold;
+@media (max-width: 500px) {
+  .Person {
+    background-color: yellow;
+  }
 }
