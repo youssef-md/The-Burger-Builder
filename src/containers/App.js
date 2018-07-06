@@ -31,8 +31,7 @@ class App extends Component {
   }
 
   deletePersonHandler = (personIndex) => {
-    //const newPersonsArray = this.state.persons -- get the pointer to the original state BAD PRACTICE !
-    const newPersonsArray = [...this.state.persons] 
+    const newPersonsArray = [...this.state.persons] //immutable fashion: creating a copy
     newPersonsArray.splice(personIndex, 1)
     this.setState({ persons: newPersonsArray })
   }
@@ -53,6 +52,7 @@ class App extends Component {
     return (
       <div className={styles.App}>
         <Cockpit 
+          appTitle = { this.props.title }
           showPersons = { this.state.showPersons }
           persons = { this.state.persons }
           clicked = { this.togglePersonHandler } />
