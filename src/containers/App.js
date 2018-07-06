@@ -37,21 +37,18 @@ class App extends Component {
     this.setState({ persons: newPersonsArray })
   }
 
-
-
-  render() {
-
-    let persons = null
-
+  showPersons = () => {
     if(this.state.showPersons) {
-      persons = 
+      return( 
         <Persons 
           persons = { this.state.persons }
           clicked = { this.deletePersonHandler }
           changed = { this.nameChangedHandler } />
+      )
     }
+  }
 
-    
+  render() {
 
     return (
       <div className={styles.App}>
@@ -60,7 +57,7 @@ class App extends Component {
           persons = { this.state.persons }
           clicked = { this.togglePersonHandler } />
 
-        { persons } 
+        { this.showPersons() } 
       </div>
     )
 
