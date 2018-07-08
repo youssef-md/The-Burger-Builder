@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import styles from './Cockpit.css'
-import Aux from '../hoc/Aux'
 
 const Cockpit = (props) => {
 
@@ -17,7 +16,7 @@ const Cockpit = (props) => {
     classes.push(styles.bold)
 
   return (
-    <Aux>
+    <Fragment>
       <h1>{ props.appTitle }</h1>        
       <p className = { classes.join(' ') }>This is really working</p>
       <button  
@@ -25,8 +24,8 @@ const Cockpit = (props) => {
       onClick = { props.clicked }>
             Toggle Persons
         </button>
-    </Aux>
-)
+    </Fragment>
+  )
 }
 
 export default Cockpit
