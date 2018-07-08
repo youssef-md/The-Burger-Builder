@@ -26,6 +26,19 @@ class App extends Component {
     console.log('[App.js] Inside DidMount()')
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[UPDATE App.js] Inside shouldUpdate', nextProps, nextState)
+    return true //update the DOM
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log('[UPDATE App.js] Inside willUpdate', nextProps, nextState)
+  }
+
+  componentDidUpdate() {
+    console.log('[UPDATE App.js] Inside didUpdate')
+  }
+
   render() {
     console.log('[App.js] Inside render()')
     return (
