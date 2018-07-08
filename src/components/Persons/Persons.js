@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import Person from './Person/Person'
 
-class Persons extends Component{
+class Persons extends PureComponent{
 
   constructor(props) {
     super(props)
@@ -20,10 +20,12 @@ class Persons extends Component{
     console.log('[UPDATE Persons.js] Inside WillReceiveProps', nextProps)
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
+ /*  shouldComponentUpdate(nextProps, nextState) {
     console.log('[UPDATE Persons.js] Inside shouldUpdate', nextProps, nextState)
-    return true //update the DOM
-  }
+    return nextProps.changed !== this.props.changed||
+           nextProps.persons !== this.props.persons ||
+           nextProps.clicked !== this.props.clicked
+  } */
 
   componentWillUpdate(nextProps, nextState) {
     console.log('[UPDATE Persons.js] Inside willUpdate', nextProps, nextState)
