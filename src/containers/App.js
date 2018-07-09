@@ -11,7 +11,8 @@ class App extends PureComponent {
       { id: 'asd1', name: 'Youssef', age: 18 },
       { id: 'asd2', name: 'Alice', age: 19 },
       { id: 'asd3', name: 'Sol', age: 2 } 
-    ]
+    ],
+    toggleClickedCounter: 0
   }
 
   constructor(props) {
@@ -70,8 +71,14 @@ class App extends PureComponent {
   togglePersonHandler = () => {
     if(this.state.persons.length === 0)
       alert('No persons left')
+
     const doesShow = this.state.showPersons
-    this.setState({ showPersons: !doesShow })
+    
+    this.setState((prevState, props) => {
+      return {
+        showPersons: !doesShow,
+        toggleClickedCounter: prevState.toggleClickedCounter + 1
+      }})
   }
 
   deletePersonHandler = (personIndex) => {
