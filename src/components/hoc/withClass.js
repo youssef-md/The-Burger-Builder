@@ -5,6 +5,7 @@ const withClass = (WrappedComponent, className) => {
     render() {
       return (
         <div className = { className }>
+          <h3>HOC Wrapping the Component</h3>
           <WrappedComponent { ...this.props } />
         </div>
       )
