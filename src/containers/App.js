@@ -1,8 +1,8 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import styles from './App.css';
 import Persons from '../components/Persons/Persons'
 import Cockpit from '../components/Cockpit/Cockpit'
-import WithClass from '../components/hoc/WithClass'
+import withClass from '../components/hoc/withClass'
 
 class App extends PureComponent {
   
@@ -45,7 +45,7 @@ class App extends PureComponent {
   render() {
     console.log('[App.js] Inside render()')
     return (
-      <WithClass classes = {styles.App}>
+      <Fragment>
         <Cockpit 
           appTitle = { this.props.title }
           showPersons = { this.state.showPersons }
@@ -53,7 +53,7 @@ class App extends PureComponent {
           clicked = { this.togglePersonHandler } />
 
         { this.showPersons() } 
-      </WithClass>
+      </Fragment>
     )
   }
 
@@ -93,4 +93,4 @@ class App extends PureComponent {
 
 }
 
-export default App;
+export default withClass(App, styles.App);
