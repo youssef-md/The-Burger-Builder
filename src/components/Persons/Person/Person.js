@@ -34,7 +34,7 @@ class Person extends Component {
           value = { this.props.name }
           ref = { this.inputElement } />
         <AuthContext.Consumer>
-          { (authBool) => authBool ? <p>I'm Authenticated!</p> : null }
+          { (authBool) => authBool ? <p>I'm Logged In!</p> : <p>I'm Logged Out</p> }
         </AuthContext.Consumer>
       </Fragment>
     )

@@ -7,6 +7,18 @@ const Cockpit = (props) => {
   const classes = []
   let btnClass = styles.Button
 
+  let btnLogInClass = styles.Button
+  let btnLogOutClass = styles.Button
+
+  if(props.authenticated){
+    btnLogInClass = styles.Button
+    btnLogOutClass = [styles.Button, styles.Red].join(' ')
+  }
+  else {
+    btnLogOutClass = styles.Button
+    btnLogInClass = [styles.Button, styles.Red].join(' ')
+  }
+
   if(props.showPersons && props.persons.length !== 0)
     btnClass = [styles.Button, styles.Red].join(' ') //Button Red
 
@@ -23,10 +35,21 @@ const Cockpit = (props) => {
       <button  
       className = { btnClass }
       onClick = { props.clicked }>
-            Toggle Persons
+          Toggle Persons
       </button>
 
-      <button onClick = {props.logIn}>Log In</button>
+      <button 
+        className = { btnLogInClass }
+        onClick = {props.logIn}>
+          Log In
+      </button>
+
+      <button 
+        className = { btnLogOutClass } 
+        onClick = {props.logOut}>
+          Log Out
+      </button>
+      
 
     </Fragment>
   )
