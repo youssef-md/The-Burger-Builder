@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import styles from './Person.css'
 import withClass from '../../hoc/withClass'
 import PropTypes from 'prop-types'
-
+import { AuthContext } from '../../../containers/App'
 class Person extends Component {
 
   constructor(props) {
@@ -33,6 +33,9 @@ class Person extends Component {
           onChange = { this.props.changed } 
           value = { this.props.name }
           ref = { this.inputElement } />
+        <AuthContext.Consumer>
+          { (authBool) => authBool ? <p>I'm Authenticated!</p> : null }
+        </AuthContext.Consumer>
       </Fragment>
     )
   }

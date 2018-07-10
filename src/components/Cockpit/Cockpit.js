@@ -24,7 +24,10 @@ const Cockpit = (props) => {
       className = { btnClass }
       onClick = { props.clicked }>
             Toggle Persons
-        </button>
+      </button>
+
+      <button onClick = {props.logIn}>Log In</button>
+
     </Fragment>
   )
 }

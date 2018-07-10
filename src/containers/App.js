@@ -4,6 +4,8 @@ import Persons from '../components/Persons/Persons'
 import Cockpit from '../components/Cockpit/Cockpit'
 import withClass from '../components/hoc/withClass'
 
+export const AuthContext = React.createContext(false)
+
 class App extends PureComponent {
   
   state = {
@@ -12,7 +14,9 @@ class App extends PureComponent {
       { id: 'asd2', name: 'Alice', age: 19 },
       { id: 'asd3', name: 'Sol', age: 2 } 
     ],
-    toggleClickedCounter: 0
+    showPersons: false,
+    toggleClickedCounter: 0,
+    authenticated: false
   }
 
   constructor(props) {
@@ -28,12 +32,12 @@ class App extends PureComponent {
     console.log('[App.js] Inside DidMount()')
   }
 
-/* 
+  /* 
   shouldComponentUpdate(nextProps, nextState) {
     console.log('[UPDATE App.js] Inside shouldUpdate', nextProps, nextState)
     return nextState.persons !== this.state.persons ||
            nextState.showPersons !== this.state.showPersons
-  } */
+  }*/ 
 
   componentWillUpdate(nextProps, nextState) {
     console.log('[UPDATE App.js] Inside willUpdate', nextProps, nextState)
@@ -51,11 +55,18 @@ class App extends PureComponent {
           appTitle = { this.props.title }
           showPersons = { this.state.showPersons }
           persons = { this.state.persons }
-          clicked = { this.togglePersonHandler } />
-
-        { this.showPersons() } 
+          clicked = { this.togglePersonHandler } 
+          logIn = { this.logInHandler }/>
+      
+        <AuthContext.Provider value = { this.state.authenticated }>
+          { this.showPersons() } 
+        </AuthContext.Provider>
       </Fragment>
     )
+  }
+
+  logInHandler = () => {
+    this.setState({ authenticated: true })
   }
 
   nameChangedHandler = (event, id, personIndex) => {
