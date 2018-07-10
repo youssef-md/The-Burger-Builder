@@ -56,7 +56,9 @@ class App extends PureComponent {
           showPersons = { this.state.showPersons }
           persons = { this.state.persons }
           clicked = { this.togglePersonHandler } 
-          logIn = { this.logInHandler }/>
+          logIn = { this.logInHandler }
+          logOut = { this.logOutHandler }
+          authenticated = { this.state.authenticated }/>
       
         <AuthContext.Provider value = { this.state.authenticated }>
           { this.showPersons() } 
@@ -65,8 +67,18 @@ class App extends PureComponent {
     )
   }
 
+  logOutHandler = () => {
+    if(!this.state.authenticated)
+      alert('You are Logged Out!')
+    else 
+      this.setState({ authenticated: false})
+  }
+
   logInHandler = () => {
-    this.setState({ authenticated: true })
+    if(this.state.authenticated)
+      alert('You are Logged In!')
+    else
+      this.setState({ authenticated: true })
   }
 
   nameChangedHandler = (event, id, personIndex) => {

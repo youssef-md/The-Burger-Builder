@@ -9,10 +9,15 @@
 }
 
 .deleteBtn {
-  background-color: gray;
+  background-color: red;
+  border: 1px solid red;
   padding: 5px;
-  border-radius: 10px;
   color: white;
+  font-size: 15px;
+  font-weight: bold;
+}
+.deleteBtn:hover {
+  background-color: salmon;
 }
 
 @media (max-width: 500px) {
