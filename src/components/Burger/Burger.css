@@ -10,14 +10,14 @@
 
 @media (min-width: 500px) and (max-width: 1000px) {
   .Burger {
-    width: 70%;
+    width: 80%;
     height: 600px;
   }
 }
 
 @media (max-width: 500px) {
   .Burger {
-    width: 60%;
+    width: 80%;
     height: 350px;
   }
 }
