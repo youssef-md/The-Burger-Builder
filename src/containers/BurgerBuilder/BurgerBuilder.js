@@ -19,7 +19,8 @@ class BurgerBuilder extends Component {
       cheese: 0,
       meat: 0
     },
-    totalPrice: 2
+    totalPrice: 2,
+    purchasable: false,
   }
 
   render() {
@@ -32,9 +33,22 @@ class BurgerBuilder extends Component {
           addIngredient = { this.addIngredientHandler }
           removeIngredient = { this.removeIngredientHandler }
           disabled = { disabledInfo }
-          totalPrice = { this.state.totalPrice }/>
+          totalPrice = { this.state.totalPrice }
+          purchasable = { this.state.purchasable }/>
       </Aux>
     )
+  }
+
+  updatePurchasable = (updatedIngredients) => {
+    
+    const sum = Object.keys(updatedIngredients).map(igKey => {
+      return updatedIngredients[igKey] // [0, 0, 0, 1]
+    })
+    .reduce((sum, elem) => {
+      return sum + elem // if sum === 0, there is no ingredients
+    }, 0)
+
+    this.setState({purchasable: sum > 0})
   }
 
   checkToDisableButton = () => {
@@ -62,6 +76,7 @@ class BurgerBuilder extends Component {
     const updatedIngredients = { ...this.state.ingredients } //immutable way
     updatedIngredients[type] = updatedCount
     this.setState({ ingredients: updatedIngredients })
+    this.updatePurchasable(updatedIngredients)
   }
 
   subtractIngredientCount = (type) => {
@@ -69,18 +84,19 @@ class BurgerBuilder extends Component {
     const updatedIngredients = { ...this.state.ingredients } //immutable way
     updatedIngredients[type] = updatedCount
     this.setState({ ingredients: updatedIngredients })
+    this.updatePurchasable(updatedIngredients)
   }
 
   addTotalPrice = (type) => {
     const priceAddition = INGREDIENT_PRICES[type]
     const newPrice = this.state.totalPrice + priceAddition
-    this.setState({ totalPrice: newPrice })
+    this.setState({ totalPrice: newPrice })  
   }
 
   subtractTotalPrice = (type) => {
     const priceAddition = INGREDIENT_PRICES[type]
     const newPrice = this.state.totalPrice - priceAddition
-    this.setState({ totalPrice: newPrice })
+    this.setState({ totalPrice: newPrice })  
   }
 }
 
