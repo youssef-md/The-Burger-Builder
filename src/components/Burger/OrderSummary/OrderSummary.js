@@ -3,7 +3,11 @@ import React,{ Fragment} from 'react'
 const OrderSummary = (props) => {
 
   const ingredientSummary = Object.keys(props.ingredients).map(igKey => {
-    return <li><b>{ igKey }</b>: {props.ingredients[igKey]}</li>
+    return (
+      <li key = { igKey }>
+        <b style = {{textTransform:'capitalize'}}>{ igKey }</b>: {props.ingredients[igKey]}
+      </li>
+    )
   })
 
   return (

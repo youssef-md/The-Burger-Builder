@@ -1,5 +1,4 @@
-import React,{ Component } from 'react' 
-import Aux from '../../hoc/Aux'
+import React,{ Component, Fragment } from 'react' 
 import Burger from '../../components/Burger/Burger'
 import BuildControls from '../../components/Burger/BuildControls/BuildControls'
 import Modal from '../../components/UI/Modal/Modal'
@@ -29,7 +28,7 @@ class BurgerBuilder extends Component {
 
     const disabledInfo = this.checkToDisableButton()
     return (
-      <Aux>
+      <Fragment>
         <Modal> 
           <OrderSummary ingredients = {this.state.ingredients} />
         </Modal>
@@ -40,7 +39,7 @@ class BurgerBuilder extends Component {
           disabled = { disabledInfo }
           totalPrice = { this.state.totalPrice }
           purchasable = { this.state.purchasable }/>
-      </Aux>
+      </Fragment>
     )
   }
 
