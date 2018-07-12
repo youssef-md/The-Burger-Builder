@@ -11,14 +11,14 @@ const Modal = (props) => {
   
   return (
 
-    <Fragment>
-      <Backdrop show = { props.show } click = { props.modalClose }/>
-      <div 
-        className = { styles.Modal }
-        style = { inlineStyle }> 
-            { props.children } 
-      </div>
-    </Fragment>
+  <Fragment>
+    <Backdrop show = { props.show } click = {props.modalClose}/>
+    <div 
+      className = { styles.Modal }
+      style = { inlineStyle }> 
+          { props.children } 
+    </div>
+  </Fragment>
   )
 
 }
