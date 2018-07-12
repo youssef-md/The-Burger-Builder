@@ -17,7 +17,8 @@ const BuildControls = (props) => (
         key = { ctrl.type } 
         label = { ctrl.label }
         add = { () => props.addIngredient(ctrl.type) }
-        remove = { () => props.removeIngredient(ctrl.type) }/>
+        remove = { () => props.removeIngredient(ctrl.type) }
+        disable = { props.disabled[ctrl.type] }/>
     ))
   }
   </div>
