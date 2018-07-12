@@ -26,31 +26,52 @@ class BurgerBuilder extends Component {
     return (
       <Aux>
         <Burger ingredients = { this.state.ingredients }/>
-        <BuildControls addIngredient = { this.addIngredientHandler }/>
+        <BuildControls 
+          addIngredient = { this.addIngredientHandler }
+          removeIngredient = { this.removeIngredientHandler }/>
       </Aux>
     )
   }
 
   addIngredientHandler = (type) => {
 
-    this.updateIngredientCount(type)
-    this.updateTotalPrice(type)
+    this.addIngredientCount(type)
+    this.addTotalPrice(type)
   }
 
   removeIngredientHandler = (type) => {
 
+    if(this.subtractIngredientCount(type))
+      this.subtractTotalPrice(type)
   }
 
-  updateIngredientCount = (type) => {
+  addIngredientCount = (type) => {
     const updatedCount = this.state.ingredients[type] + 1
     const updatedIngredients = { ...this.state.ingredients } //immutable way
     updatedIngredients[type] = updatedCount
     this.setState({ ingredients: updatedIngredients })
   }
 
-  updateTotalPrice = (type) => {
+  subtractIngredientCount = (type) => {
+    if(this.state.ingredients[type] <= 0){
+      alert(`There is no more ${type} left!`)
+      return false
+    }
+    const updatedCount = this.state.ingredients[type] - 1
+    const updatedIngredients = { ...this.state.ingredients } //immutable way
+    updatedIngredients[type] = updatedCount
+    this.setState({ ingredients: updatedIngredients })
+  }
+
+  addTotalPrice = (type) => {
     const priceAddition = INGREDIENT_PRICES[type]
     const newPrice = this.state.totalPrice + priceAddition
+    this.setState({ totalPrice: newPrice })
+  }
+
+  subtractTotalPrice = (type) => {
+    const priceAddition = INGREDIENT_PRICES[type]
+    const newPrice = this.state.totalPrice - priceAddition
     this.setState({ totalPrice: newPrice })
   }
 
