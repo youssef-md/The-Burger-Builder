@@ -3,5 +3,6 @@
   background-color: #CF8F2E;
   display: flex;
   flex-flow: column;
-  
+  align-items: center;
+  padding: 50px 0px;
 }
