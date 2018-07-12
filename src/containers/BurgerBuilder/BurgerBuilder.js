@@ -26,15 +26,15 @@ class BurgerBuilder extends Component {
     return (
       <Aux>
         <Burger ingredients = { this.state.ingredients }/>
-        <BuildControls />
+        <BuildControls addIngredient = { this.addIngredientHandler }/>
       </Aux>
     )
   }
 
   addIngredientHandler = (type) => {
 
-    updateIngredientCount(type)
-    updateTotalPrice(type)
+    this.updateIngredientCount(type)
+    this.updateTotalPrice(type)
   }
 
   removeIngredientHandler = (type) => {
