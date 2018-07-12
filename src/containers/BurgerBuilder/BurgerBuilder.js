@@ -30,7 +30,7 @@ class BurgerBuilder extends Component {
     const disabledInfo = this.checkToDisableButton()
     return (
       <Fragment>
-        <Modal show = { this.state.ordering }> 
+        <Modal show = { this.state.ordering } modalClose = { this.cancelPurchaseHandler }> 
           <OrderSummary ingredients = {this.state.ingredients} />
         </Modal>
         <Burger ingredients = { this.state.ingredients }/>
@@ -43,6 +43,10 @@ class BurgerBuilder extends Component {
           order = { this.orderHandler }/>
       </Fragment>
     )
+  }
+
+  cancelPurchaseHandler = () => {
+    this.setState({ ordering: false })
   }
 
   orderHandler = () => {
