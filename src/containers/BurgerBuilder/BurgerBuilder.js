@@ -32,19 +32,26 @@ class BurgerBuilder extends Component {
   }
 
   addIngredientHandler = (type) => {
-    const oldCount = this.state.ingredients[type]
-    const updatedCount = oldCount + 1
-    const updatedIngredients = {...this.state.ingredients}
-    updatedIngredients[type] = updatedCount
 
-    const priceAddition = INGREDIENT_PRICES[type]
-    const newPrice = this.state.totalPrice + priceAddition
-
-    this.setState({ totalPrice: newPrice, ingredients: updatedIngredients})
+    updateIngredientCount(type)
+    updateTotalPrice(type)
   }
 
   removeIngredientHandler = (type) => {
 
+  }
+
+  updateIngredientCount = (type) => {
+    const updatedCount = this.state.ingredients[type] + 1
+    const updatedIngredients = { ...this.state.ingredients } //immutable way
+    updatedIngredients[type] = updatedCount
+    this.setState({ ingredients: updatedIngredients })
+  }
+
+  updateTotalPrice = (type) => {
+    const priceAddition = INGREDIENT_PRICES[type]
+    const newPrice = this.state.totalPrice + priceAddition
+    this.setState({ totalPrice: newPrice })
   }
 
 }
