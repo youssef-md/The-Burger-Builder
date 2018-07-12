@@ -16,6 +16,14 @@
   outline: none;
 }
 
+.Label {
+  font-size: 25px;
+  width: 120px;
+  background-color: rgba(255,255,255,.1);
+  border-radius: 8px; 
+  text-align: center;
+}
+
 .BuildControl button:disabled {
   background-color: #AC9980;
   border: 1px solid #7E7365;
@@ -28,13 +36,7 @@
   color: #ccc;
   cursor: not-allowed;
 }
-
-.Label {
-  padding: 10px;
-  font-weight: bold;
-  width: 80px;
-}
-
+ 
 .BuildControl .Less {  
   background-color: #D39952;
   color: white;
