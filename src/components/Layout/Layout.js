@@ -3,15 +3,32 @@ import styles from './Layout.css'
 import Toolbar from '../Navigation/Toolbar/Toolbar'
 import SideDrawer from '../Navigation/SideDrawer/SideDrawer'
 
-const Layout = (props) => (
-  <Fragment>
-    <Toolbar/>
-    <SideDrawer/>
-    <main className = {styles.content}>
-      {props.children}
-    </main>
+class Layout extends React.Component{
 
-  </Fragment>
-)
+  state = {
+    showSidedrawer: true,
+  }
+
+  render() {
+    return (
+      <Fragment>
+        <Toolbar />
+        <SideDrawer 
+          open = { this.state.showSidedrawer }
+          close = { this.sidedrawerCloseHandler }/>
+
+        <main className = {styles.content}>
+          {this.props.children}
+        </main>
+    
+      </Fragment>
+
+    )
+  }
+
+  sidedrawerCloseHandler = () => {
+    this.setState({showSidedrawer: false})
+  }
+}
 
 export default Layout
