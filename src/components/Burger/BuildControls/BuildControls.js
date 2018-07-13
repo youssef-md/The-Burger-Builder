@@ -3,9 +3,9 @@ import styles from './BuildControls.css'
 import BuildControl from './BuildControl/BuildControl'
 
 const controls = [
-  { label: 'Meat', type: 'meat' },
   { label: 'Cheese', type: 'cheese' },
   { label: 'Salad', type: 'salad' },
+  { label: 'Meat', type: 'meat' },
   { label: 'Bacon', type: 'bacon' }
 ]
 
