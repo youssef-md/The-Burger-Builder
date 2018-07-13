@@ -1,0 +1,24 @@
+.Item {
+  margin: 0;
+  box-sizing: border-box;
+  display: flex;
+  height: 100%;
+  align-items: center;
+
+}
+
+.Item a {
+  color: white;
+  text-decoration: none;
+  height: 100%;
+  padding: 16px 10px;
+  border-bottom: 4px solid transparent;
+  box-sizing: border-box;
+  display: block;
+}
+
+.Item a:hover, .Item a:active, .Item a.active {
+  background-color: rgba(255,255,255,.1);
+  border-bottom: 4px solid rgb(235, 115, 3);
+  color: white;
+}
