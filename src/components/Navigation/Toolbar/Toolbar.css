@@ -21,3 +21,9 @@
   height: 100%;
   margin-top: 10px;
 }
+
+@media (max-width: 499px) {
+  .DesktopOnly {
+    display: none;
+  }
+}
