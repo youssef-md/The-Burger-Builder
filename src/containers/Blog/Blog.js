@@ -7,10 +7,15 @@ import axios from 'axios'
 
 class Blog extends Component {
 
+    state = {
+        posts: []
+    }
+
     componentDidMount() {
         axios.get('http://jsonplaceholder.typicode.com/posts')
             .then(response => {
-                console.log(response)
+                this.setState({posts: response.data})
+                console.log(this.state.posts)
             })
     }
 
