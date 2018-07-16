@@ -8,7 +8,8 @@ import axios from 'axios'
 class Blog extends Component {
 
     state = {
-        posts: []
+        posts: [],
+        selectedPostId: null
     }
 
     componentDidMount() {
@@ -40,7 +41,7 @@ class Blog extends Component {
                 { posts }
                 </section>
                 <section>
-                    <FullPost />
+                    <FullPost id = { this.state.selectedPostId }/>
                 </section>
                 <section>
                     <NewPost />
@@ -50,7 +51,8 @@ class Blog extends Component {
     }
 
     selectedPostHandler = (id) => {
-        console.log(id)        
+        console.log(id)     
+        this.setState({selectedPostId: id})   
     }
 
 }
