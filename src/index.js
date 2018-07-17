@@ -5,20 +5,23 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import axios from 'axios'
 
+axios.defaults.baseURL = 'http://jsonplaceholder.typicode.com'
+axios.defaults.headers.common['Authorization'] = 'AUTH TOKEN'
+axios.defaults.headers.post['Content-Type'] = 'application/json'
+
 axios.interceptors.request.use(requestConfig => {
+  // default header, e.g. auth
   console.log(requestConfig)
   return requestConfig
 }, error => { // error for no internet connection
-  console.log(error)
   return Promise.reject(error)
 })
 
 axios.interceptors.response.use(response => {
-  console.log(response)
   return response
 }, error => { // error for when the response is not available
-  console.log(error)
   return Promise.reject(error)
 })
+
 ReactDOM.render( <App />, document.getElementById( 'root' ) );
 registerServiceWorker();
