@@ -13,6 +13,12 @@ axios.interceptors.request.use(requestConfig => {
   return Promise.reject(error)
 })
 
-
+axios.interceptors.response.use(response => {
+  console.log(response)
+  return response
+}, error => { // error for when the response is not available
+  console.log(error)
+  return Promise.reject(error)
+})
 ReactDOM.render( <App />, document.getElementById( 'root' ) );
 registerServiceWorker();
