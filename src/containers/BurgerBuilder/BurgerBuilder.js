@@ -31,18 +31,11 @@ class BurgerBuilder extends Component {
   render() {
 
     const disabledInfo = this.checkToDisableButton()
-    let orderSummary = <OrderSummary 
-                          ingredients = {this.state.ingredients} 
-                          cancel = { this.cancelPurchaseHandler }
-                          submit = { this.submitPurchaseHandler }
-                          totalPrice = { this.state.totalPrice }/>
-    if(this.state.loading)
-      orderSummary = <Spinner />
 
     return (
       <Fragment>
         <Modal show = { this.state.ordering } modalClose = { this.cancelPurchaseHandler }> 
-          {orderSummary}
+          { this.loadOrderSummary() }
         </Modal>
         <Burger ingredients = { this.state.ingredients }/>
         <BuildControls 
@@ -54,6 +47,19 @@ class BurgerBuilder extends Component {
           order = { this.orderHandler }/>
       </Fragment>
     )
+  }
+
+  
+  loadOrderSummary = () => {
+    if(this.state.loading)
+      return <Spinner />
+    else{
+      return( <OrderSummary 
+                ingredients = {this.state.ingredients} 
+                cancel = { this.cancelPurchaseHandler }
+                submit = { this.submitPurchaseHandler }
+                totalPrice = { this.state.totalPrice }/>)
+    }
   }
 
   submitPurchaseHandler = () => {
@@ -106,19 +112,17 @@ class BurgerBuilder extends Component {
   checkToDisableButton = () => {
     const ingredientsBool = { ...this.state.ingredients }
     for(let ingredient in ingredientsBool)
-    ingredientsBool[ingredient] = ingredientsBool[ingredient] <= 0
+      ingredientsBool[ingredient] = ingredientsBool[ingredient] <= 0
     //{meat: true, salad: false <- disable Less btn for salad}
     return ingredientsBool
   }
 
   addIngredientHandler = (type) => {
-
     this.addIngredientCount(type)
     this.addTotalPrice(type)
   }
 
   removeIngredientHandler = (type) => {
-
     this.subtractIngredientCount(type)
     this.subtractTotalPrice(type)
   }
