@@ -17,49 +17,65 @@ const INGREDIENT_PRICES = {
 class BurgerBuilder extends Component {
 
   state = {
-    ingredients: {
-      cheese: 0,
-      salad: 0,
-      meat: 0,
-      bacon: 0
-    },
+    ingredients: null,
     totalPrice: 2,
     purchasable: false,
     ordering: false,
     loading: false
   }
 
-  render() {
+  componentDidMount() {
+    axios.get('https://theburgerbuilder-4b0a1.firebaseio.com/ingredients.json')
+      .then(response => {
+        this.setState({ingredients: response.data})
+      })
+  }
 
-    const disabledInfo = this.checkToDisableButton()
+  render() {
 
     return (
       <Fragment>
         <Modal show = { this.state.ordering } modalClose = { this.cancelPurchaseHandler }> 
           { this.loadOrderSummary() }
         </Modal>
-        <Burger ingredients = { this.state.ingredients }/>
-        <BuildControls 
-          addIngredient = { this.addIngredientHandler }
-          removeIngredient = { this.removeIngredientHandler }
-          disabled = { disabledInfo }
-          totalPrice = { this.state.totalPrice }
-          purchasable = { this.state.purchasable }
-          order = { this.orderHandler }/>
+        { this.loadBurger() }
       </Fragment>
     )
   }
 
-  
+  loadBurger = () => {
+    if(this.state.ingredients) {
+      const disabledInfo = this.checkToDisableButton()
+      return (
+        <Fragment>
+          <Burger ingredients = { this.state.ingredients }/>
+          <BuildControls 
+            addIngredient = { this.addIngredientHandler }
+            removeIngredient = { this.removeIngredientHandler }
+            disabled = { disabledInfo }
+            totalPrice = { this.state.totalPrice }
+            purchasable = { this.state.purchasable }
+            order = { this.orderHandler }/>
+        </Fragment>
+      )
+    } else {
+      return <Spinner/>
+    }
+  }
+
   loadOrderSummary = () => {
     if(this.state.loading)
       return <Spinner />
     else{
-      return( <OrderSummary 
-                ingredients = {this.state.ingredients} 
-                cancel = { this.cancelPurchaseHandler }
-                submit = { this.submitPurchaseHandler }
-                totalPrice = { this.state.totalPrice }/>)
+      if(this.state.ingredients){
+        return( 
+          <OrderSummary 
+            ingredients = {this.state.ingredients} 
+            cancel = { this.cancelPurchaseHandler }
+            submit = { this.submitPurchaseHandler }
+            totalPrice = { this.state.totalPrice }/>
+        )
+      }
     }
   }
 
@@ -81,7 +97,7 @@ class BurgerBuilder extends Component {
       }
     }
 
-    axios.post('/orders.json', order)
+    axios.post('/orders.json  ', order)
     .then(response => {
       this.setState({ loading: false, ordering: false })
     })
