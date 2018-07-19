@@ -5,20 +5,25 @@ const withErrorHandler = (WrappedComponent, axios) => {
   return class extends React.Component { //returning a class
     
     state = {
-      error: null
+      error: null,
     }
 
     componentWillMount() {
-      axios.interceptors.request.use(request => {
+      this.reqInterceptor = axios.interceptors.request.use(request => {
         this.setState({error: null})
         return request
       })
 
-      axios.interceptors.response.use(response => response, error => {
+      this.resInterceptor = axios.interceptors.response.use(response => response, error => {
         this.setState({error: true})
       })
     }
     
+    componentWillUnmount() {
+      axios.interceptors.request.eject(this.reqInterceptor)
+      axios.interceptors.request.eject(this.resInterceptor)
+    }
+
     render() {
 
       return (
