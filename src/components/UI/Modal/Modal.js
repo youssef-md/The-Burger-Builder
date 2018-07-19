@@ -6,7 +6,7 @@ class Modal extends React.Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     //update only if the user clicked in the Order button
-    return this.props.show !== nextProps.show
+    return this.props.show !== nextProps.show  || this.props.children !== nextProps.children 
   }
 
   componentDidUpdate() {
