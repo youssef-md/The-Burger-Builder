@@ -21,7 +21,8 @@ class BurgerBuilder extends Component {
     totalPrice: 2,
     purchasable: false,
     ordering: false,
-    loading: false
+    loading: false,
+    error: false
   }
 
   componentDidMount() {
@@ -29,6 +30,7 @@ class BurgerBuilder extends Component {
       .then(response => {
         this.setState({ingredients: response.data})
       })
+      .catch(error => this.setState({error:true}))
   }
 
   render() {
@@ -59,7 +61,7 @@ class BurgerBuilder extends Component {
         </Fragment>
       )
     } else {
-      return <Spinner/>
+      return !this.state.error ? <Spinner/> : <p style = {{textAlign: 'center'}}>Error while getting the ingredients</p>
     }
   }
 
