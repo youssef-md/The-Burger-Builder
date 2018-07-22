@@ -2,6 +2,7 @@ import React from 'react'
 import axios from '../../../axios'
 import Post from '../../../components/Post/Post'
 import './Posts.css'
+import { Link } from 'react-router-dom'
 
 class Posts extends React.Component {
 
@@ -33,11 +34,14 @@ class Posts extends React.Component {
 
     if(!this.state.error) {
         posts = this.state.posts.map(post => {
-            return <Post 
-                        key = { post.id } 
-                        title = { post.title } 
-                        author = { post.author }
-                        clicked = { () => this.selectedPostHandler(post.id) }/>
+            return (
+              <Link key = { post.id }  to = {'/' + post.id}>
+                <Post          
+                  title = { post.title } 
+                  author = { post.author }
+                  clicked = { () => this.selectedPostHandler(post.id) }/>
+              </Link>
+            )
         })
     }
     return(
