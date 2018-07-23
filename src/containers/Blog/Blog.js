@@ -15,7 +15,7 @@ class Blog extends Component {
                 <header>
                     <nav>
                         <ul>
-                            <li><NavLink exact to="/" activeClassName="my-active" activeStyle={{ color: 'red'}}>Home</NavLink></li>
+                            <li><NavLink to="/posts" activeClassName="my-active" activeStyle={{ color: 'orange'}}>Posts</NavLink></li>
                             <li><NavLink exact to="/new-post">New Post</NavLink></li>
                         </ul>
                     </nav>
