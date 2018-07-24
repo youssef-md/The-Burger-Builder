@@ -6,10 +6,11 @@ class NewPost extends Component {
     state = {
         title: '',
         content: '',
-        author: 'Max'
+        author: 'Youssef',
     }
 
     render () {
+
         return (
             <div className="NewPost">
                 <h1>Add a Post</h1>
@@ -26,7 +27,6 @@ class NewPost extends Component {
             </div>
         );
     }
-
     postDataHandler = () => {
         const post = {
             title: this.state.title,
@@ -37,6 +37,8 @@ class NewPost extends Component {
         axios.post('http://jsonplaceholder.typicode.com/posts', post)
             .then(response => {
                 console.log(response)
+                //this.setState({submitted: true})
+                this.props.history.replace('/posts/')
             })
     }
 }
