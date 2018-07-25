@@ -82,8 +82,7 @@ class BurgerBuilder extends Component {
   }
 
   submitPurchaseHandler = () => {
-    //alert('Purchased')
-    this.setState({ loading: true })
+/*  this.setState({ loading: true })
     const order = {
       ingredients: this.state.ingredients,
       price: this.state.totalPrice.toFixed(2), // real app: recalculate the price on the server
@@ -99,13 +98,15 @@ class BurgerBuilder extends Component {
       }
     }
 
-    axios.post('/orders.json  ', order)
+    axios.post('/orders.json', order)
     .then(response => {
       this.setState({ loading: false, ordering: false })
     })
     .catch(error => {
       this.setState({ loading: false, ordering: false })
-    })
+    }) */
+
+    this.props.history.push('/checkout')
   }
 
   cancelPurchaseHandler = () => {
