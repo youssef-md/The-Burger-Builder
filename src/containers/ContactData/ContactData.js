@@ -36,7 +36,7 @@ class ContactData extends React.Component {
     this.setState({ loading: true })
     const order = {
       ingredients: this.props.ingredients,
-      price: this.state.totalPrice.toFixed(2), // real app: recalculate the price on the server
+      price: this.props.totalPrice, // real app: recalculate the price on the server
       deliveryMethod: 'fastest',
       customer: {
         name: 'Youssef',
@@ -51,10 +51,10 @@ class ContactData extends React.Component {
 
     axios.post('/orders.json', order)
     .then(response => {
-      this.setState({ loading: false, ordering: false })
+      this.setState({ loading: false })
     })
     .catch(error => {
-      this.setState({ loading: false, ordering: false })
+      this.setState({ loading: false })
     }) 
   }
 
