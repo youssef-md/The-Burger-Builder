@@ -22,11 +22,17 @@ class ContactData extends React.Component {
           <input className = { styles.Input } type="email" name="email" placeholder="Your Email" />
           <input className = { styles.Input } type="text" name="street" placeholder="Your Street" />
           <input className = { styles.Input } type="text" name="postal" placeholder="Your Postal" />
-          <Button btnType="Success">ORDER</Button>
+          <Button btnType="Success" click = { this.orderHandler }>ORDER</Button>
         </form>
       </div>
     )
   }
+
+  orderHandler = (event) => {
+    event.preventDefault()
+    console.log(this.props.ingredients)
+  }
+
 }
 
 export default ContactData
