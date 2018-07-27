@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from '../../components/UI/Button/Button'
+import styles from './ContactData.css'
 
 class ContactData extends React.Component {
 
@@ -7,7 +8,7 @@ class ContactData extends React.Component {
     name: '',
     email: '',
     address: {
-      street: '',
+      street:  '',
       postalCode: ''
     }
   }
