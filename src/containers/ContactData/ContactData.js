@@ -2,6 +2,7 @@ import React from 'react'
 import Button from '../../components/UI/Button/Button'
 import styles from './ContactData.css'
 import axios from '../../axios-orders'
+import Spinner from '../../components/UI/Spinner/Spinner'
 
 class ContactData extends React.Component {
 
@@ -19,13 +20,7 @@ class ContactData extends React.Component {
     return (
       <div className = {styles.ContactData}>
         <h4>Enter your Contact Data</h4>
-        <form>
-          <input className = { styles.Input } type="text" name="name" placeholder="Your Name" />
-          <input className = { styles.Input } type="email" name="email" placeholder="Your Email" />
-          <input className = { styles.Input } type="text" name="street" placeholder="Your Street" />
-          <input className = { styles.Input } type="text" name="postal" placeholder="Your Postal" />
-          <Button btnType="Success" click = { this.orderHandler }>ORDER</Button>
-        </form>
+        { this.loadingForm() }
       </div>
     )
   }
@@ -56,6 +51,22 @@ class ContactData extends React.Component {
     .catch(error => {
       this.setState({ loading: false })
     }) 
+  }
+
+  loadingForm = () => {
+    if(this.state.loading)
+      return <Spinner />
+    else {
+      return (
+        <form>
+          <input className = { styles.Input } type="text" name="name" placeholder="Your Name" />
+          <input className = { styles.Input } type="email" name="email" placeholder="Your Email" />
+          <input className = { styles.Input } type="text" name="street" placeholder="Your Street" />
+          <input className = { styles.Input } type="text" name="postal" placeholder="Your Postal" />
+          <Button btnType="Success" click = { this.orderHandler }>ORDER</Button>
+        </form>
+      )
+    }
   }
 
 }
