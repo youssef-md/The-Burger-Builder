@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '../../components/UI/Button/Button'
 
 class ContactData extends React.Component {
 
@@ -20,6 +21,7 @@ class ContactData extends React.Component {
           <input type="email" name="email" placeholder="Your Email" />
           <input type="text" name="street" placeholder="Your Street" />
           <input type="text" name="postal" placeholder="Your Postal" />
+          <Button btnType="Success">ORDER</Button>
         </form>
       </div>
     )
