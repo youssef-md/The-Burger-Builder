@@ -1,6 +1,7 @@
 import React from 'react'
 import Button from '../../components/UI/Button/Button'
 import styles from './ContactData.css'
+import axios from '../../axios-orders'
 
 class ContactData extends React.Component {
 
@@ -10,7 +11,8 @@ class ContactData extends React.Component {
     address: {
       street:  '',
       postalCode: ''
-    }
+    },
+    loading: false
   }
 
   render() {
@@ -30,7 +32,30 @@ class ContactData extends React.Component {
 
   orderHandler = (event) => {
     event.preventDefault()
-    console.log(this.props.ingredients)
+
+    this.setState({ loading: true })
+    const order = {
+      ingredients: this.props.ingredients,
+      price: this.state.totalPrice.toFixed(2), // real app: recalculate the price on the server
+      deliveryMethod: 'fastest',
+      customer: {
+        name: 'Youssef',
+        address: {
+          street: 'Test Street 1',
+          zipCode: '72871008',
+          country: 'Brazil'
+        },
+        email: 'test@gmail.com'
+      }
+    }
+
+    axios.post('/orders.json', order)
+    .then(response => {
+      this.setState({ loading: false, ordering: false })
+    })
+    .catch(error => {
+      this.setState({ loading: false, ordering: false })
+    }) 
   }
 
 }
