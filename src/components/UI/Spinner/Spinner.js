@@ -1,8 +1,9 @@
-import React from 'react'
-import styles from './Spinner.css'
+import React from 'react';
 
-const Spinner = () => (
-  <div className={ styles.lds_facebook }><div></div><div></div><div></div></div>
-)
+import classes from './Spinner.css';
 
-export default Spinner
+const spinner = () => (
+    <div className={classes.Loader}>Loading...</div>
+);
+
+export default spinner;
