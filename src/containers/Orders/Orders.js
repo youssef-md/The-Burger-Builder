@@ -2,6 +2,7 @@ import React from 'react';
 import Order from '../../components/Order/Order'
 import axios from '../../axios-orders'
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
+import styles from './Orders.css'
 
 class Orders extends React.Component {
 
@@ -30,11 +31,19 @@ class Orders extends React.Component {
   render() {
     return(
       <div>
-        { this.state.orders.map(order => (
-          <Order key = { order.id } ingredients = { order.ingredients } price = { order.price }/>
-        )) }
+        {this.renderOrdersHandler()}
       </div>
     )
+  }
+
+  renderOrdersHandler = () => {
+    if(this.state.orders.length > 0) {
+      return this.state.orders.map(order => (
+        <Order key = { order.id } ingredients = { order.ingredients } price = { order.price }/>
+      ))
+    }else {
+      return <h1 className = { styles.NoOrders }>There is no orders</h1>
+    }
   }
 }
 
