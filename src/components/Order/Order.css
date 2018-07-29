@@ -7,3 +7,12 @@
   box-sizing: border-box;
   text-align: center;
 }
+
+.Ingredient {
+  text-transform: capitalize;
+  display: inline-block;
+  margin: 0 8px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 6px;
+}
