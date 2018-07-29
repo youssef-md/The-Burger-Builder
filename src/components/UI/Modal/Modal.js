@@ -9,10 +9,6 @@ class Modal extends React.Component {
     return this.props.show !== nextProps.show  || this.props.children !== nextProps.children 
   }
 
-  componentDidUpdate() {
-    console.log('Modal updated')
-  }
-
   render() {
     const inlineStyle = {
       transform: this.props.show ? 'translateY(0)' : 'translateY(-100vh)',

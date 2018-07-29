@@ -4,8 +4,8 @@ import Item from './Item/Item'
 
 const Items = (props) => (
   <ul className = {styles.Items}>
-    <Item link = "/" active = {true}>Burger Builder</Item>
-    <Item link = "/" active ={false}>Checkout</Item>
+    <Item link = "/" exact = { true }>Burger Builder</Item>
+    <Item link = "/orders" >Orders</Item>
   </ul>
 );
 
