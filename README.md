@@ -1,6 +1,6 @@
 # The Burger Builder
 
-![deepinscreenshot_select-area_20180713214231](https://user-images.githubusercontent.com/29265857/42719123-28100c7c-86e7-11e8-8448-61be58232db2.png)
+![deepinscreenshot_select-area_20180729002247](https://user-images.githubusercontent.com/29265857/43362634-9a4fa826-92c5-11e8-961b-05e20ba8c883.png)
 
 Build your burger dynamically and order it.
 
