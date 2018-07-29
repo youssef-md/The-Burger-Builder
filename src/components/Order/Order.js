@@ -13,7 +13,13 @@ const Order = (props) => {
   }
 
   const ingredientOutput = ingredients.map ( ig => {
-    return <span className = { styles.Ingredient } key = { ig.name }>{ ig.name } : { ig.amount } </span>
+    const styling = [styles.Ingredient]
+    if(ig.amount === 0)
+      styling.push(styles.withoutIngred)
+    else 
+      styling.push(styles.withIngred)
+
+    return <span className = { styling.join(' ') } key = { ig.name }>{ ig.name } : { ig.amount }</span>
   })
   
   return (
@@ -22,5 +28,6 @@ const Order = (props) => {
       <p>Price: <strong>$ { props.price }</strong></p>
     </div>
   )
+
 }
 export default Order

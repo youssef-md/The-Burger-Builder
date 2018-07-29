@@ -15,4 +15,14 @@
   border: 1px solid #ccc;
   padding: 5px;
   border-radius: 6px;
+  color: white;
+  text-shadow: 0 2px 2px black;
+}
+
+.withoutIngred {
+  background-color: rgb(255, 84, 84);
+}
+
+.withIngred {
+  background-color: rgb(65, 177, 65);
 }
