@@ -12,7 +12,9 @@ const Order = (props) => {
     })
   }
 
-
+  const ingredientOutput = ingredients.map ( ig => {
+    return <span key = { ig.name }>{ ig.name } ({ ig.amount }) </span>
+  })
   
   return (
     <div className = { styles.Order }>
