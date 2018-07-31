@@ -1,5 +1,5 @@
 .Input {
-  width: 100%;
+  width: 350px;
   padding: 10px;
   box-sizing: border-box;
 }
@@ -18,9 +18,11 @@
   padding: 6px 10px;
   display: block;
   width: 100%;
+  box-sizing: border-box;
+  border-radius: 15px;
 }
 
 .InputElement:focus {
   outline: none;
-  background-color: #ccc;
+  background-color: #EEE;
 }

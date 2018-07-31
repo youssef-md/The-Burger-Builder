@@ -5,7 +5,7 @@ const Input = (props) => {
 
   let inputElement = null
 
-  switch (props.inputType) {
+  switch (props.inputtype) {
     case ('input'):
       inputElement = <input className = { styles.InputElement }{...props}/>
       break
@@ -24,3 +24,5 @@ const Input = (props) => {
     </div>
   )
 }
+
+export default Input
