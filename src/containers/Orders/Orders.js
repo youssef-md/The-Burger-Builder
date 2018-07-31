@@ -3,6 +3,7 @@ import Order from '../../components/Order/Order'
 import axios from '../../axios-orders'
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 import styles from './Orders.css'
+import Spinner from '../../components/UI/Spinner/Spinner'
 
 class Orders extends React.Component {
 
@@ -37,12 +38,16 @@ class Orders extends React.Component {
   }
 
   renderOrdersHandler = () => {
-    if(this.state.orders.length > 0) {
-      return this.state.orders.map(order => (
-        <Order key = { order.id } ingredients = { order.ingredients } price = { order.price }/>
-      ))
-    }else {
-      return <h1 className = { styles.NoOrders }>There is no orders</h1>
+    if(!this.state.loading) {
+      if(this.state.orders.length > 0) {
+        return this.state.orders.map(order => (
+          <Order key = { order.id } ingredients = { order.ingredients } price = { order.price }/>
+        ))
+      }else {
+        return <h1 className = { styles.NoOrders }>There is no orders</h1>
+      }
+    } else {
+      return <Spinner/>
     }
   }
 }
