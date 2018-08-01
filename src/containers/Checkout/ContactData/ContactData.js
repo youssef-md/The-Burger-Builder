@@ -8,11 +8,57 @@ import Input from '../../../components/UI/Input/Input'
 class ContactData extends React.Component {
 
   state = {
-    name: '',
-    email: '',
-    address: {
-      street:  '',
-      postalCode: ''
+    orderForm: {
+      name: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'text',
+          placeholder: 'your name'
+        },
+        value: ''
+      },
+      street: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'text',
+          placeholder: 'street'
+        },
+        value: ''
+      },
+      zipCode: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'text',
+          placeholder: 'zip code'
+        },
+        value: ''
+      },
+      country: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'text',
+          placeholder: 'country'
+        },
+        value: ''
+      },
+      email: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'email',
+          placeholder: 'email'
+        },
+        value: ''
+      },
+      deliveryMethod: {
+        elementType: 'select',
+        elementConfig: {
+          options: [
+            {value: 'fastest', displayValue: 'Fastest'},
+            {value: 'cheapest', displayValue: 'Cheapest'},
+          ]
+        },
+        value: ''
+      },
     },
     loading: false
   }
@@ -33,16 +79,7 @@ class ContactData extends React.Component {
     const order = {
       ingredients: this.props.ingredients,
       price: this.props.totalPrice, // real app: recalculate the price on the server
-      deliveryMethod: 'fastest',
-      customer: {
-        name: 'Youssef',
-        address: {
-          street: 'Test Street 1',
-          zipCode: '72871008',
-          country: 'Brazil'
-        },
-        email: 'test@gmail.com'
-      }
+      
     }
 
     axios.post('/orders.json', order)
