@@ -98,10 +98,7 @@ class ContactData extends React.Component {
     else {
       return (
         <form>
-          <Input inputtype = "input" type="text" name="name" placeholder="Your Name" />
-          <Input inputtype = "input" type="email" name="email" placeholder="Your Email" />
-          <Input inputtype = "input" type="text" name="street" placeholder="Your Street" />
-          <Input inputtype = "input" type="text" name="postal" placeholder="Your Postal" />
+          <Input elementType="" elementConfig="" value="" />
           <Button btnType="Success" click = { this.orderHandler }>ORDER</Button>
         </form>
       )
