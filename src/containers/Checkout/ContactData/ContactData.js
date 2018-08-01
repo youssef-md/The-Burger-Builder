@@ -96,9 +96,24 @@ class ContactData extends React.Component {
     if(this.state.loading)
       return <Spinner />
     else {
+
+      const formElementsArray = []
+      for(let key in this.state.orderForm) {
+        formElementsArray.push({
+          id: key,
+          config: this.state.orderForm[key]
+        })
+      }
+
       return (
         <form>
-          <Input elementType="" elementConfig="" value="" />
+          { formElementsArray.map(formElement =>(
+            <Input 
+              key = { formElement.id }
+              elementType={ formElement.config.elementType } 
+              elementConfig={ formElement.config.elementConfig } 
+              value={ formElement.config.value} />
+          ))}
           <Button btnType="Success" click = { this.orderHandler }>ORDER</Button>
         </form>
       )
