@@ -96,7 +96,6 @@ class ContactData extends React.Component {
     if(this.state.loading)
       return <Spinner />
     else {
-
       const formElementsArray = []
       for(let key in this.state.orderForm) {
         formElementsArray.push({
@@ -104,15 +103,15 @@ class ContactData extends React.Component {
           config: this.state.orderForm[key]
         })
       }
-
       return (
         <form>
           { formElementsArray.map(formElement =>(
             <Input 
               key = { formElement.id }
-              elementType={ formElement.config.elementType } 
-              elementConfig={ formElement.config.elementConfig } 
-              value={ formElement.config.value} />
+              elementType = { formElement.config.elementType } 
+              elementConfig = { formElement.config.elementConfig } 
+              value = { formElement.config.value } 
+              onChangeHandler = { this.inputOnChangeHandler }/>
           ))}
           <Button btnType="Success" click = { this.orderHandler }>ORDER</Button>
         </form>
@@ -120,6 +119,9 @@ class ContactData extends React.Component {
     }
   }
 
+  inputOnChangeHandler = (event) => {
+    console.log(event.target.value)
+  }
 }
 
 export default ContactData
