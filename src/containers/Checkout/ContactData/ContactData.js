@@ -15,7 +15,13 @@ class ContactData extends React.Component {
           type: 'text',
           placeholder: 'your name'
         },
-        value: ''
+        value: '',
+        validation: {
+          required: true,
+          minLength: 10,
+          maxLength: 15
+        },
+        valid: false,
       },
       street: {
         elementType: 'input',
@@ -23,7 +29,13 @@ class ContactData extends React.Component {
           type: 'text',
           placeholder: 'street'
         },
-        value: ''
+        value: '',
+        validation: {
+          required: true,
+          minLength: 10,
+          maxLength: 15
+        },
+        valid: false,
       },
       zipCode: {
         elementType: 'input',
@@ -31,7 +43,13 @@ class ContactData extends React.Component {
           type: 'text',
           placeholder: 'zip code'
         },
-        value: ''
+        value: '',
+        validation: {
+          required: true,
+          minLength: 5,
+          maxLength: 7
+        },
+        valid: false,
       },
       country: {
         elementType: 'input',
@@ -39,7 +57,13 @@ class ContactData extends React.Component {
           type: 'text',
           placeholder: 'country'
         },
-        value: ''
+        value: '',
+        validation: {
+          required: true,
+          minLength: 8,
+          maxLength: 10
+        },
+        valid: false,
       },
       email: {
         elementType: 'input',
@@ -47,7 +71,13 @@ class ContactData extends React.Component {
           type: 'email',
           placeholder: 'email'
         },
-        value: ''
+        value: '',
+        validation: {
+          required: true,
+          minLength: 10,
+          maxLength: 15
+        },
+        valid: false,
       },
       deliveryMethod: {
         elementType: 'select',
@@ -70,6 +100,15 @@ class ContactData extends React.Component {
         { this.loadingForm() }
       </div>
     )
+  }
+
+  checkValidity = (value, rules) => {
+
+    if((value.length >= rules.minLength) && (value.length <= rules.maxLength)) {
+      return true
+    } else {
+      return false
+    }
   }
 
   orderHandler = (event) => {
@@ -132,6 +171,10 @@ class ContactData extends React.Component {
       ...updatedOrderForm[inputID]
     }
     updatedFormElement.value = event.target.value
+    updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation)
+    
+    console.log(updatedFormElement) 
+
     updatedOrderForm[inputID] = updatedFormElement
     this.setState({ orderForm: updatedOrderForm })
   }
