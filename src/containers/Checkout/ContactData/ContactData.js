@@ -54,7 +54,7 @@ class ContactData extends React.Component {
         elementConfig: {
           options: [
             {value: 'fastest', displayValue: 'Fastest'},
-            {value: 'cheapest', displayValue: 'Cheapest'},
+            {value: 'cheapest', displayValue: 'Cheapest'}
           ]
         },
         value: ''
@@ -111,7 +111,7 @@ class ContactData extends React.Component {
               elementType = { formElement.config.elementType } 
               elementConfig = { formElement.config.elementConfig } 
               value = { formElement.config.value } 
-              onChangeHandler = { (event) => this.inputOnChangeHandler(event, formElement.key) }/>
+              onChangeHandler = { (event) => this.inputOnChangeHandler(event, formElement.id) }/>
           ))}
           <Button btnType="Success" click = { this.orderHandler }>ORDER</Button>
         </form>
