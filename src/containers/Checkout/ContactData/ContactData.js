@@ -13,7 +13,7 @@ class ContactData extends React.Component {
         elementType: 'input',
         elementConfig: {
           type: 'text',
-          placeholder: 'your name'
+          placeholder: 'name'
         },
         value: '',
         validation: {
@@ -92,7 +92,7 @@ class ContactData extends React.Component {
             {value: 'cheapest', displayValue: 'Cheapest'}
           ]
         },
-        value: ''
+        value: 'fastest'
       },
     },
     loading: false
@@ -163,7 +163,8 @@ class ContactData extends React.Component {
               onChangeHandler = { (event) => this.inputOnChangeHandler(event, formElement.id) }
               valid = { formElement.config.valid }
               shouldValidate = { formElement.config.validation }
-              touched = { formElement.config.touched }/>
+              touched = { formElement.config.touched }
+            />
           ))}
           <Button btnType="Success">ORDER</Button>
         </form>

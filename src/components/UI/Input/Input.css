@@ -36,6 +36,13 @@
   border: 1px solid red;
 }
 
+.Message {
+  background-color: #eee;
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px dashed red;
+}
+
 @media(min-width: 500px) {
   .Input {
     width: 400px;

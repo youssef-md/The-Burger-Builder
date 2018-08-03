@@ -5,12 +5,18 @@ const Input = (props) => {
 
   let inputElement = null
   let inputStyling = [styles.InputElement]
+  let validationMessage = null
+
+  console.log(props.elementConfig.placeholder)
 
   if(props.shouldValidate && props.touched) {
     if(props.valid) {
       inputStyling.push(styles.Valid)
     } else {
       inputStyling.push(styles.Invalid)
+      validationMessage = <p className = {styles.Message}>
+                            Please enter a valid { props.elementConfig.placeholder }
+                          </p>
     } 
   }
 
@@ -45,6 +51,7 @@ const Input = (props) => {
     <div className = { styles.Input}>
       <label>{ props.label }</label>
       { inputElement }
+      { validationMessage }
     </div>
   )
 }
