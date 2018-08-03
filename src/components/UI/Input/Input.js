@@ -7,8 +7,6 @@ const Input = (props) => {
   let inputStyling = [styles.InputElement]
   let validationMessage = null
 
-  console.log(props.elementConfig.placeholder)
-
   if(props.shouldValidate && props.touched) {
     if(props.valid) {
       inputStyling.push(styles.Valid)
