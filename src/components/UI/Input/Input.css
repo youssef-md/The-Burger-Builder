@@ -27,6 +27,15 @@
   background-color: #EEE;
 }
 
+.Valid, .Valid:hover {
+  border: 2px solid green;
+  background-color: rgba(82, 153, 82,.2);
+}
+
+.Invalid {
+  border: 1px solid red;
+}
+
 @media(min-width: 500px) {
   .Input {
     width: 400px;
