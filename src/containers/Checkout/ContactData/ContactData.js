@@ -156,7 +156,8 @@ class ContactData extends React.Component {
               elementConfig = { formElement.config.elementConfig } 
               value = { formElement.config.value } 
               onChangeHandler = { (event) => this.inputOnChangeHandler(event, formElement.id) }
-              valid = { formElement.config.valid }/>
+              valid = { formElement.config.valid }
+              shouldValidate = { formElement.config.validation }/>
           ))}
           <Button btnType="Success">ORDER</Button>
         </form>

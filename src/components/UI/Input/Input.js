@@ -6,11 +6,13 @@ const Input = (props) => {
   let inputElement = null
   let inputStyling = [styles.InputElement]
 
-  if(props.valid) {
+  console.log(props.shouldValidate)
+
+  if(props.valid && props.shouldValidate) {
     inputStyling.push(styles.Valid)
-  } else {
+  } else if(!props.valid && props.shouldValidate) {
     inputStyling.push(styles.Invalid)
-  }
+  } 
 
   switch (props.elementType) {
     case ('input'):
