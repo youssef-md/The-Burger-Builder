@@ -22,6 +22,7 @@ class ContactData extends React.Component {
           maxLength: 15
         },
         valid: false,
+        touched: false,
       },
       street: {
         elementType: 'input',
@@ -33,9 +34,10 @@ class ContactData extends React.Component {
         validation: {
           required: true,
           minLength: 10,
-          maxLength: 15
+          maxLength: 35
         },
         valid: false,
+        touched: false,
       },
       zipCode: {
         elementType: 'input',
@@ -50,6 +52,7 @@ class ContactData extends React.Component {
           maxLength: 7
         },
         valid: false,
+        touched: false,
       },
       country: {
         elementType: 'input',
@@ -64,6 +67,7 @@ class ContactData extends React.Component {
           maxLength: 10
         },
         valid: false,
+        touched: false,
       },
       email: {
         elementType: 'input',
@@ -78,6 +82,7 @@ class ContactData extends React.Component {
           maxLength: 15
         },
         valid: false,
+        touched: false,
       },
       deliveryMethod: {
         elementType: 'select',
@@ -157,7 +162,8 @@ class ContactData extends React.Component {
               value = { formElement.config.value } 
               onChangeHandler = { (event) => this.inputOnChangeHandler(event, formElement.id) }
               valid = { formElement.config.valid }
-              shouldValidate = { formElement.config.validation }/>
+              shouldValidate = { formElement.config.validation }
+              touched = { formElement.config.touched }/>
           ))}
           <Button btnType="Success">ORDER</Button>
         </form>
@@ -175,6 +181,11 @@ class ContactData extends React.Component {
     updatedFormElement.value = event.target.value
     updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation)
     
+    if(updatedFormElement.value !== ''){
+      updatedFormElement.touched = true
+    } else {
+      updatedFormElement.touched = false
+    }
     console.log(updatedFormElement) 
 
     updatedOrderForm[inputID] = updatedFormElement
