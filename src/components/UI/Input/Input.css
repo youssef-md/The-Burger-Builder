@@ -1,5 +1,5 @@
 .Input {
-  width: 350px;
+  width: 250px;
   padding: 10px;
   box-sizing: border-box;
 }
@@ -25,4 +25,26 @@
 .InputElement:focus {
   outline: none;
   background-color: #EEE;
+}
+
+.Valid {
+  border: 2px solid green;
+  background-color: rgba(82, 153, 82,.2);
+}
+
+.Invalid {
+  border: 1px solid red;
+}
+
+.Message {
+  background-color: #eee;
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px dashed red;
+}
+
+@media(min-width: 500px) {
+  .Input {
+    width: 400px;
+  }
 }
