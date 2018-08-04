@@ -92,10 +92,12 @@ class ContactData extends React.Component {
             {value: 'cheapest', displayValue: 'Cheapest'}
           ]
         },
-        value: 'fastest'
+        value: 'fastest',
+        valid: 'true'
       },
     },
-    loading: false
+    loading: false,
+    formIsValid: false
   }
 
   render() {
@@ -166,7 +168,7 @@ class ContactData extends React.Component {
               touched = { formElement.config.touched }
             />
           ))}
-          <Button btnType="Success">ORDER</Button>
+          <Button btnType="Success" disabled = { !this.state.formIsValid }>ORDER</Button>
         </form>
       )
     }
@@ -191,7 +193,13 @@ class ContactData extends React.Component {
       updatedFormElement.touched = false
   
     updatedOrderForm[inputID] = updatedFormElement
-    this.setState({ orderForm: updatedOrderForm })
+
+    let formIsValid = true
+    for(let inputID in updatedOrderForm) {
+      formIsValid = updatedOrderForm[inputID].valid && formIsValid  
+    }
+
+    this.setState({ orderForm: updatedOrderForm, formIsValid: formIsValid })
   }
 }
 
