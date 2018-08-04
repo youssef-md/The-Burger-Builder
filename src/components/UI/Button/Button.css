@@ -23,6 +23,7 @@
   color: #944317;
 }
 
-.Success:disabled, .Danger:disabled {
+.Button:disabled {
   color: gray;
+  cursor: not-allowed;
 }
