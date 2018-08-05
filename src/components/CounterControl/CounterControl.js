@@ -4,7 +4,7 @@ import './CounterControl.css';
 
 const counterControl = (props) => (
     <div className="CounterControl" onClick={props.clicked}>
-        {props.label}
+        <p>{props.label}</p>
     </div>
 );
 
