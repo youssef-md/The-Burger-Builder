@@ -38,7 +38,9 @@ class Counter extends Component {
 
 							<ul>
 								{this.props.storedResults.map(storedResult => (
-									<li onclick={this.props.onDeleteResult}>{ storedResult }</li>
+									<li key={ storedResult.id } onClick={this.props.onDeleteResult}>
+										{ storedResult.value }
+									</li>
 								))}
 							</ul>
 					</div>
