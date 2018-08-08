@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CounterControl from '../../components/CounterControl/CounterControl';
 import CounterOutput from '../../components/CounterOutput/CounterOutput';
 import { connect } from 'react-redux'
+import './Counter.css'
 
 class Counter extends Component {
 	state = {
@@ -34,11 +35,13 @@ class Counter extends Component {
 							<CounterControl label="Add 10" clicked={ this.props.onAddCounter }  />
 							<CounterControl label="Subtract 10" clicked={ this.props.onSubtract }  />
 							<hr/>
-							<button onClick={this.props.onStoreResult}>Store Result</button>
+							<button className="btn_store_result" onClick={this.props.onStoreResult}>Store Result</button>
 
 							<ul>
 								{this.props.storedResults.map(storedResult => (
-									<li key={ storedResult.id } onClick={() => this.props.onDeleteResult(storedResult.id)}>
+									<li className="Result" 
+											key={ storedResult.id } 
+											onClick={() => this.props.onDeleteResult(storedResult.id)}>
 										{ storedResult.value }
 									</li>
 								))}

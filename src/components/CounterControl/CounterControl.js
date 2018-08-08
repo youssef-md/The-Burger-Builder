@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './CounterControl.css';
 
 const counterControl = (props) => (
