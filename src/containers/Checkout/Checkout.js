@@ -12,14 +12,14 @@ class Checkout extends React.Component {
     return (
       <div>
         <CheckoutSummary 
-          ingredients = {this.state.ingredients} 
+          ingredients = {this.props.ings} 
           onCheckoutCancel = {this.checkoutCancelHandler}
           onCheckoutContinue = {this.checkoutContinueHandler}/>
 
         <Route 
           path = {this.props.match.path + '/contact-data'} 
-          render = {(props) => (<ContactData ingredients = { this.state.ingredients } 
-                                             totalPrice = { this.state.totalPrice } 
+          render = {(props) => (<ContactData ingredients = { this.props.ings } 
+                                             totalPrice = { this.props.price } 
                                              { ...props }
                                 />)} 
         />
