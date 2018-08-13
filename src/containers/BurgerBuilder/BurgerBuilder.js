@@ -83,7 +83,6 @@ class BurgerBuilder extends Component {
   }
 
   submitPurchaseHandler = () => {
-
     this.props.history.push('/checkout')
   }
 
