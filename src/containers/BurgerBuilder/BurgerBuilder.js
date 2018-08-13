@@ -19,7 +19,6 @@ const INGREDIENT_PRICES = {
 class BurgerBuilder extends Component {
 
   state = {
-    ingredients: null,
     totalPrice: 2,
     purchasable: false,
     ordering: false,
@@ -48,14 +47,14 @@ class BurgerBuilder extends Component {
   }
 
   loadBurger = () => {
-    if(this.state.ingredients) {
+    if(this.props.ings) {
       const disabledInfo = this.checkToDisableButton()
       return (
         <Fragment>
-          <Burger ingredients = { this.state.ingredients }/>
+          <Burger ingredients = { this.props.ings }/>
           <BuildControls 
-            addIngredient = { this.addIngredientHandler }
-            removeIngredient = { this.removeIngredientHandler }
+            addIngredient = { this.props.onIngredientAdded }
+            removeIngredient = { this.props.onIngredientRemoved }
             disabled = { disabledInfo }
             totalPrice = { this.state.totalPrice }
             purchasable = { this.state.purchasable }
@@ -71,10 +70,10 @@ class BurgerBuilder extends Component {
     if(this.state.loading)
       return <Spinner />
     else{
-      if(this.state.ingredients){
+      if(this.props.ings){
         return( 
           <OrderSummary 
-            ingredients = {this.state.ingredients} 
+            ingredients = {this.props.ings} 
             cancel = { this.cancelPurchaseHandler }
             submit = { this.submitPurchaseHandler }
             totalPrice = { this.state.totalPrice }/>
@@ -86,8 +85,8 @@ class BurgerBuilder extends Component {
   submitPurchaseHandler = () => {
 
     const queryParams = []
-    for (let ingred in this.state.ingredients) {
-      queryParams.push(encodeURIComponent(ingred) + '=' + encodeURIComponent(this.state.ingredients[ingred]))
+    for (let ingred in this.props.ings) {
+      queryParams.push(encodeURIComponent(ingred) + '=' + encodeURIComponent(this.props.ings[ingred]))
     }
     queryParams.push('price=' + this.state.totalPrice.toFixed(2))
 
@@ -121,7 +120,7 @@ class BurgerBuilder extends Component {
   }
 
   checkToDisableButton = () => {
-    const ingredientsBool = { ...this.state.ingredients }
+    const ingredientsBool = { ...this.props.ings }
     for(let ingredient in ingredientsBool)
       ingredientsBool[ingredient] = ingredientsBool[ingredient] <= 0
     //{meat: true, salad: false <- disable Less btn for salad}
@@ -180,4 +179,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default withErrorHandler(BurgerBuilder, axios)
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(BurgerBuilder, axios))
