@@ -9,12 +9,7 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 import { connect } from 'react-redux'
 import * as actionType from '../../store/actions'
 
-const INGREDIENT_PRICES = {
-  salad: 0.5,
-  cheese: 0.6,
-  meat: 1.5,
-  bacon: 0.8
-}
+
 
 class BurgerBuilder extends Component {
 
@@ -56,7 +51,7 @@ class BurgerBuilder extends Component {
             addIngredient = { this.props.onIngredientAdded }
             removeIngredient = { this.props.onIngredientRemoved }
             disabled = { disabledInfo }
-            totalPrice = { this.state.totalPrice }
+            totalPrice = { this.props.price }
             purchasable = { this.state.purchasable }
             order = { this.orderHandler }/>
         </Fragment>
@@ -155,7 +150,8 @@ class BurgerBuilder extends Component {
 
 const mapStateToProps = state => {
   return {
-    ings: state.ingredients
+    ings: state.ingredients,
+    price: state.totalPrice
   }
 }
 
