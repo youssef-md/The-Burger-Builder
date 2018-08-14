@@ -129,8 +129,8 @@ class ContactData extends React.Component {
     }
     console.log(formData)
     const order = {
-      ingredients: this.props.ingredients,
-      price: this.props.totalPrice, // real app: recalculate the price on the server
+      ingredients: this.props.ings,
+      price: this.props.price, // real app: recalculate the price on the server
       orderData: formData 
     }
 
