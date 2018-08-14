@@ -27,6 +27,7 @@ const reducer = (state = initialState, action) => {
           ...state.ingredients,
           [action.ingredientName]: state.ingredients[action.ingredientName] + 1 // overwriting sintax
         },
+        totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName]
       }
   
     case actionType.REMOVE_INGREDIENT:
@@ -35,7 +36,8 @@ const reducer = (state = initialState, action) => {
         ingredients: {
           ...state.ingredients,
           [action.ingredientName]: state.ingredients[action.ingredientName] - 1
-        }
+        },
+        totalPrice: state.totalPrice - INGREDIENT_PRICES[action.ingredientName]
       }
 
     default:

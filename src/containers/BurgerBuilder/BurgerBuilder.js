@@ -108,44 +108,6 @@ class BurgerBuilder extends Component {
     //{meat: true, salad: false <- disable Less btn for salad}
     return ingredientsBool
   }
-
-  addIngredientHandler = (type) => {
-    this.addIngredientCount(type)
-    this.addTotalPrice(type)
-  }
-
-  removeIngredientHandler = (type) => {
-    this.subtractIngredientCount(type)
-    this.subtractTotalPrice(type)
-  }
-
-  addIngredientCount = (type) => {
-    const updatedCount = this.state.ingredients[type] + 1
-    const updatedIngredients = { ...this.state.ingredients } //immutable way
-    updatedIngredients[type] = updatedCount
-    this.setState({ ingredients: updatedIngredients })
-    this.updatePurchasable(updatedIngredients)
-  }
-
-  subtractIngredientCount = (type) => {
-    const updatedCount = this.state.ingredients[type] - 1
-    const updatedIngredients = { ...this.state.ingredients } //immutable way
-    updatedIngredients[type] = updatedCount
-    this.setState({ ingredients: updatedIngredients })
-    this.updatePurchasable(updatedIngredients)
-  }
-
-  addTotalPrice = (type) => {
-    const priceAddition = INGREDIENT_PRICES[type]
-    const newPrice = this.state.totalPrice + priceAddition
-    this.setState({ totalPrice: newPrice })  
-  }
-
-  subtractTotalPrice = (type) => {
-    const priceAddition = INGREDIENT_PRICES[type]
-    const newPrice = this.state.totalPrice - priceAddition
-    this.setState({ totalPrice: newPrice })  
-  }
 }
 
 const mapStateToProps = state => {
