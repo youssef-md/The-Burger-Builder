@@ -7,9 +7,8 @@ const initialState = {
     cheese: 0,
     meat: 0
   },
-  totalPrice: 2
+  totalPrice: 2.00
 }
-
 const INGREDIENT_PRICES = {
   salad: 0.5,
   cheese: 0.6,

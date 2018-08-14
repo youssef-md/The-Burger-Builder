@@ -47,7 +47,7 @@ class BurgerBuilder extends Component {
             addIngredient = { this.props.onIngredientAdded }
             removeIngredient = { this.props.onIngredientRemoved }
             disabled = { disabledInfo }
-            totalPrice = { this.props.price }
+            totalPrice = { this.props.price.toFixed(2) }
             purchasable = { this.updatePurchasable(this.props.ings) }
             order = { this.orderHandler }/>
         </Fragment>
@@ -67,7 +67,7 @@ class BurgerBuilder extends Component {
             ingredients = {this.props.ings} 
             cancel = { this.cancelPurchaseHandler }
             submit = { this.submitPurchaseHandler }
-            totalPrice = { this.props.price }/>
+            totalPrice = { this.props.price.toFixed(2) }/>
         )
       }
     }

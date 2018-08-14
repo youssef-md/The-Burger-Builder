@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 
 class Checkout extends React.Component {
 
-
   render() {
     
     return (

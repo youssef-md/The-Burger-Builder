@@ -130,7 +130,7 @@ class ContactData extends React.Component {
     console.log(formData)
     const order = {
       ingredients: this.props.ings,
-      price: this.props.price, // real app: recalculate the price on the server
+      price: this.props.price.toFixed(2), // real app: recalculate the price on the server
       orderData: formData 
     }
 
