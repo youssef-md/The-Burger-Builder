@@ -3,9 +3,9 @@ import Burger from '../../components/Burger/Burger'
 import BuildControls from '../../components/Burger/BuildControls/BuildControls'
 import Modal from '../../components/UI/Modal/Modal'
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary'
-import axios from '../../axios-orders'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
+import axios from '../../axios-orders'
 import { connect } from 'react-redux'
 import * as burguerBuilderActions from '../../store/actions/index'
 
@@ -19,11 +19,7 @@ class BurgerBuilder extends Component {
   }
 
   componentDidMount() {
-    /* axios.get('https://theburgerbuilder-4b0a1.firebaseio.com/ingredients.json')
-      .then(response => {
-        this.setState({ingredients: response.data})
-      })
-      .catch(error => this.setState({error:true})) */
+    
   }
 
   render() {
