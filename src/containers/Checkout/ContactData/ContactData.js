@@ -5,6 +5,7 @@ import axios from '../../../axios-orders'
 import Spinner from '../../../components/UI/Spinner/Spinner'
 import Input from '../../../components/UI/Input/Input'
 import { connect } from 'react-redux'
+import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler'
 
 class ContactData extends React.Component {
 
@@ -121,13 +122,11 @@ class ContactData extends React.Component {
 
   orderHandler = (event) => {
     event.preventDefault()
-    this.setState({ loading: true })
     
     const formData = {}
     for(let formElementId in this.state.orderForm) {
       formData[formElementId] = this.state.orderForm[formElementId].value
     }
-    console.log(formData)
     const order = {
       ingredients: this.props.ings,
       price: this.props.price.toFixed(2), // real app: recalculate the price on the server
@@ -203,5 +202,6 @@ const mapStateToProps = state => {
     price: state.totalPrice
   }
 }
-export default connect(mapStateToProps)(ContactData)
+
+export default connect(mapStateToProps)(withErrorHandler(ContactData, axios))
 
