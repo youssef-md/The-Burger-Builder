@@ -6,6 +6,7 @@ import Spinner from '../../../components/UI/Spinner/Spinner'
 import Input from '../../../components/UI/Input/Input'
 import { connect } from 'react-redux'
 import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler'
+import * as actions from '../../../store/actions/index'
 
 class ContactData extends React.Component {
 
@@ -133,7 +134,7 @@ class ContactData extends React.Component {
       orderData: formData 
     }
 
-  
+    this.props.onOrderBurger(order) // Redux dispatched action
   }
 
   loadingForm = () => {
@@ -194,6 +195,10 @@ class ContactData extends React.Component {
 
     this.setState({ orderForm: updatedOrderForm, formIsValid: formIsValid })
   }
+}
+
+const mapDispatchToProps = dispatch => {
+  onOrderBurger: (orderData) => dispatch(actions.purchaseBurgerStart(orderData))
 }
 
 const mapStateToProps = state => {
