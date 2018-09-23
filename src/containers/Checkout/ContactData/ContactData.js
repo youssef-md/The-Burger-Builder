@@ -5,6 +5,8 @@ import axios from '../../../axios-orders'
 import Spinner from '../../../components/UI/Spinner/Spinner'
 import Input from '../../../components/UI/Input/Input'
 import { connect } from 'react-redux'
+import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler'
+import * as actions from '../../../store/actions/index'
 
 class ContactData extends React.Component {
 
@@ -97,7 +99,6 @@ class ContactData extends React.Component {
         valid: 'true'
       },
     },
-    loading: false,
     formIsValid: false
   }
 
@@ -121,31 +122,22 @@ class ContactData extends React.Component {
 
   orderHandler = (event) => {
     event.preventDefault()
-    this.setState({ loading: true })
     
     const formData = {}
     for(let formElementId in this.state.orderForm) {
       formData[formElementId] = this.state.orderForm[formElementId].value
     }
-    console.log(formData)
     const order = {
       ingredients: this.props.ings,
       price: this.props.price.toFixed(2), // real app: recalculate the price on the server
       orderData: formData 
     }
 
-    axios.post('/orders.json', order)
-    .then(response => {
-      this.setState({ loading: false })
-      this.props.history.push('/')
-    })
-    .catch(error => {
-      this.setState({ loading: false })
-    }) 
+    this.props.onOrderBurger(order) // Redux dispatched action
   }
 
   loadingForm = () => {
-    if(this.state.loading)
+    if(this.props.loading)
       return <Spinner />
     else {
       const formElementsArray = []
@@ -204,11 +196,19 @@ class ContactData extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapDispatchToProps = dispatch => {
   return {
-    ings: state.ingredients,
-    price: state.totalPrice
+    onOrderBurger: (orderData) => dispatch(actions.purchaseBurger(orderData))
   }
 }
-export default connect(mapStateToProps)(ContactData)
+
+const mapStateToProps = state => {
+  return {
+    ings: state.burgerBuilder.ingredients,
+    price: state.burgerBuilder.totalPrice,
+    loading: state.order.loading
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(ContactData, axios))
 
