@@ -1,28 +1,29 @@
-import React, { Fragment } from 'react'
-import styles from './SideDrawer.css'
-import Logo from '../../Logo/Logo'
-import Items from '../Items/Items'
-import Backdrop from '../../UI/Backdrop/Backdrop'
+import React from 'react';
 
-const SideDrawer = (props) => {
+import Logo from '../../Logo/Logo';
+import NavigationItems from '../NavigationItems/NavigationItems';
+import classes from './SideDrawer.css';
+import Backdrop from '../../UI/Backdrop/Backdrop';
+import Aux from '../../../hoc/Aux/Aux';
 
-  let classes = [styles.SideDrawer, styles.Close]
-  if(props.show)
-    classes = [styles.SideDrawer, styles.Open]
+const sideDrawer = ( props ) => {
+    let attachedClasses = [classes.SideDrawer, classes.Close];
+    if (props.open) {
+        attachedClasses = [classes.SideDrawer, classes.Open];
+    }
+    return (
+        <Aux>
+            <Backdrop show={props.open} clicked={props.closed}/>
+            <div className={attachedClasses.join(' ')}>
+                <div className={classes.Logo}>
+                    <Logo />
+                </div>
+                <nav>
+                    <NavigationItems />
+                </nav>
+            </div>
+        </Aux>
+    );
+};
 
-  return (
-    <Fragment>
-      <Backdrop show = { props.show } click = { props.close }/>
-      <div className = { classes.join(' ') }>
-        <div className = { styles.Logo }>
-          <Logo/>
-        </div>
-        <nav>
-          <Items/>
-        </nav>
-      </div>
-    </Fragment>
-  )
-}
-
-export default SideDrawer
+export default sideDrawer;

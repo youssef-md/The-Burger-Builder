@@ -1,32 +1,34 @@
-import React, { Fragment } from 'react';
-import styles from './Modal.css'
-import Backdrop from '../Backdrop/Backdrop'
+import React, { Component } from 'react';
 
-class Modal extends React.Component {
+import classes from './Modal.css';
+import Aux from '../../../hoc/Aux/Aux';
+import Backdrop from '../Backdrop/Backdrop';
 
-  shouldComponentUpdate(nextProps, nextState) {
-    //update only if the user clicked in the Order button
-    return this.props.show !== nextProps.show  || this.props.children !== nextProps.children 
-  }
+class Modal extends Component {
 
-  render() {
-    const inlineStyle = {
-      transform: this.props.show ? 'translateY(0)' : 'translateY(-100vh)',
-      opacity: this.props.show ? '1' : '0'
+    shouldComponentUpdate ( nextProps, nextState ) {
+        return nextProps.show !== this.props.show || nextProps.children !== this.props.children;
     }
 
-    return (
-      <Fragment>
-        <Backdrop show = { this.props.show } click = {this.props.modalClose}/>
-        <div 
-          className = { styles.Modal }
-          style = { inlineStyle }> 
-              { this.props.children } 
-        </div>
-      </Fragment>
-    )
-  }
+    componentWillUpdate () {
+        console.log('[Modal] WillUpdate');
+    }
+
+    render () {
+        return (
+            <Aux>
+                <Backdrop show={this.props.show} clicked={this.props.modalClosed} />
+                <div
+                    className={classes.Modal}
+                    style={{
+                        transform: this.props.show ? 'translateY(0)' : 'translateY(-100vh)',
+                        opacity: this.props.show ? '1' : '0'
+                    }}>
+                    {this.props.children}
+                </div>
+            </Aux>
+        )
+    }
 }
 
-
-export default Modal
+export default Modal;

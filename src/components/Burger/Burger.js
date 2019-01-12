@@ -1,27 +1,29 @@
 import React from 'react';
-import styles from './Burger.css'
-import BurgerIngred from './BurgerIngred/BurgerIngred'
 
-const Burger = (props) => {
+import classes from './Burger.css';
+import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
-  let transformedIngredients = Object.keys(props.ingredients).map(ingredientKey => {
-    return [...Array(props.ingredients[ingredientKey])].map((_, i) => {
-      return <BurgerIngred key = { ingredientKey + i } type = { ingredientKey } />
-    })
-  }).reduce((arr, elem) => {
-    return arr.concat(elem)
-  }, [])
+const burger = ( props ) => {
+    console.log(props);
+    let transformedIngredients = Object.keys( props.ingredients )
+        .map( igKey => {
+            return [...Array( props.ingredients[igKey] )].map( ( _, i ) => {
+                return <BurgerIngredient key={igKey + i} type={igKey} />;
+            } );
+        } )
+        .reduce((arr, el) => {
+            return arr.concat(el)
+        }, []);
+    if (transformedIngredients.length === 0) {
+        transformedIngredients = <p>Please start adding ingredients!</p>;
+    }
+    return (
+        <div className={classes.Burger}>
+            <BurgerIngredient type="bread-top" />
+            {transformedIngredients}
+            <BurgerIngredient type="bread-bottom" />
+        </div>
+    );
+};
 
-  if(transformedIngredients.length === 0)
-    transformedIngredients = <p className = { styles.InitialMessage }>Add some ingredients!</p>
-
-  return (
-    <div className = {styles.Burger}>
-      <BurgerIngred type = 'bread-top'/>
-      {transformedIngredients}
-      <BurgerIngred type = 'bread-bottom'/>
-    </div>
-  )
-}
-
-export default Burger
+export default burger;
